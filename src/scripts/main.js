@@ -10,7 +10,7 @@ let y = 0;
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
-elm.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); }
+elm.oncontextmenu = () => false;
 
 function draw(url, x, y) {
     var img = new Image();
@@ -18,6 +18,8 @@ function draw(url, x, y) {
       ctx.drawImage(img, x, y);
     };
     img.src = url;
+    img.width = 64; 
+    img.height = 64;
   }
 
 ctx.fillStyle = board_color2;
