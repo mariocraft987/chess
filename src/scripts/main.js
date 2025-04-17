@@ -18,7 +18,7 @@ ctx.fillRect(0, 0, 512, 512);
 ctx.fillStyle = board_color1;
 for (i = 0; i < 64; i++) {
     x++
-    ctx.fillRect(x * square_size, y * square_size, x * square_size, y * square_size);
+    ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
 
     if (x > 8) {
         x = 0;
