@@ -10,6 +10,7 @@ let y = 0;
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
+elm.oncontextmenu = function(e) { e.preventDefault(); e.stopPropagation(); }
 
 function draw(url, x, y) {
     var img = new Image();
