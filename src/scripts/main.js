@@ -4,7 +4,7 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-let x = 1; // start on square one
+let x = 0; // start on square zero
 let y = 0;
 
 // get canvas id and ctx 2d
