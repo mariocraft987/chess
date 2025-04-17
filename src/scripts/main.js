@@ -11,6 +11,14 @@ let y = 0;
 const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
 
+function draw(url, x, y) {
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, x, y);
+    };
+    img.src = url;
+  }
+
 ctx.fillStyle = board_color2;
 ctx.fillRect(0, 0, 512, 512);
 
@@ -25,3 +33,5 @@ for (i = 0; i < 64; i++) {
         y++;
     }
 }
+
+draw("/src/pieces/black/pawn.svg", 32, 32);
