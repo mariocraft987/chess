@@ -35,4 +35,4 @@ for (i = 0; i < 64; i++) {
     }
 }
 
-draw("/src/pieces/black/pawn.svg", 32, 32);
+draw("/src/pieces/black/pawn.svg", 0, 0);
