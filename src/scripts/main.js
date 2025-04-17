@@ -4,8 +4,8 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-x = 0;
-y = 0;
+let x = 0;
+let y = 0;
 
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
