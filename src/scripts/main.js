@@ -18,8 +18,8 @@ function draw(url, x, y) {
       ctx.drawImage(img, x, y);
     };
     img.src = url;
-    img.width = 64; 
-    img.height = 64;
+    img.width = 99; 
+    img.height = 99;
   }
 
 ctx.fillStyle = board_color2;
