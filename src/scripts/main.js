@@ -4,7 +4,7 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-let x = 0;
+let x = 1; // start on square one
 let y = 0;
 
 // get canvas id and ctx 2d
@@ -20,7 +20,7 @@ for (i = 0; i < 64; i++) {
     ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
     x += 2;
 
-    if (x > 4) {
+    if (x > 6) {
         x = 0;
         y++;
     }
