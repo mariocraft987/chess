@@ -4,7 +4,7 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-let x = 0; // start on square zero
+let x = 1; // start on square zero
 let y = 0;
 
 // get canvas id and ctx 2d
@@ -21,7 +21,7 @@ for (i = 0; i < 64; i++) {
     x += 2;
 
     if (x > 8) {
-        x -= 7;
+        x -= 9;
         y++;
     }
 }
