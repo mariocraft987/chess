@@ -17,8 +17,8 @@ ctx.fillRect(0, 0, 512, 512);
 // fill checkboard pattern
 ctx.fillStyle = board_color1;
 for (i = 0; i < 64; i++) {
-    x += 2;
     ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
+    x += 2;
 
     if (x > 4) {
         x = 0;
