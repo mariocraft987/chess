@@ -20,7 +20,7 @@ for (i = 0; i < 64; i++) {
     ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
     x += 2;
 
-    if (x > 6) {
+    if (x > 8) {
         x = 0;
         y++;
     }
