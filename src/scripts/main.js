@@ -10,6 +10,7 @@ let y = 0;
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 elm.oncontextmenu = () => false;
 
 function draw(url, x, y, w, h) {
@@ -35,4 +36,4 @@ for (i = 0; i < 64; i++) {
     }
 }
 
-draw("/src/pieces/black/pawn.svg", 0, 0, 100, 100);
+draw("/src/pieces/black/pawn.svg", 0, 0, 70, 70);
