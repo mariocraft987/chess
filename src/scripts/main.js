@@ -80,8 +80,8 @@ draw("/src/pieces/black/rook.svg", 7 * square_size, 0 * square_size, square_size
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
   return {
-    x: (evt.clientX - (rect.left / 2)),
-    y: (evt.clientY - (rect.top / 2))
+    x: (evt.clientX - (rect.left * 2)),
+    y: (evt.clientY - (rect.top * 2))
   };
 }
 
