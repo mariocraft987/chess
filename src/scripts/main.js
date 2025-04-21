@@ -94,6 +94,6 @@ function roundToSquareSize(size, value) {
 ctx.fillStyle = "rgb(255, 0, 0, 0.7)";
 
 elm.addEventListener("mousedown", function (e) {
-  ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), groundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
+  ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 }); 
 
