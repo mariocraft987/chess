@@ -88,6 +88,6 @@ function getMousePos(canvas, evt) {
 ctx.fillStyle = "rgb(255, 0, 0, 0.7)";
 
 elm.addEventListener("mousedown", function (e) {
-  ctx.fillRect(getMousePos(elm, e), getMousePos(elm, e), square_size, square_size);
+  ctx.fillRect(getMousePos(elm, e).x, getMousePos(elm, e).y, square_size, square_size);
 }); 
 
