@@ -55,3 +55,23 @@ draw("/src/pieces/white/king.svg", 4 * square_size, 7 * square_size, square_size
 draw("/src/pieces/white/bishop.svg", 5 * square_size, 7 * square_size, square_size, square_size);
 draw("/src/pieces/white/knight.svg", 6 * square_size, 7 * square_size, square_size, square_size);
 draw("/src/pieces/white/rook.svg", 7 * square_size, 7 * square_size, square_size, square_size);
+
+// black pawns
+draw("/src/pieces/black/pawn.svg", 0 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 1 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 2 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 3 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 4 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 5 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 6 * square_size, 1 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 7 * square_size, 1 * square_size, square_size, square_size);
+
+// black pieces
+draw("/src/pieces/black/rook.svg", 0 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/knight.svg", 1 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/bishop.svg", 2 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/queen.svg", 3 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/king.svg", 4 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/bishop.svg", 5 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/knight.svg", 6 * square_size, 0 * square_size, square_size, square_size);
+draw("/src/pieces/black/rook.svg", 7 * square_size, 0 * square_size, square_size, square_size);
