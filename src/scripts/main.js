@@ -86,8 +86,8 @@ function getMousePos(canvas, evt) {
 }
 
 function roundToSquareSize(size, value) {
-  new_value = value * (size / 4);
-  Math.round(new_value);
+  new_value = value * size;
+  Math.floor(new_value);
   return (new_value / size);
 }
 
