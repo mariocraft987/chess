@@ -12,14 +12,12 @@ const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
 elm.oncontextmenu = () => false;
 
-function draw(url, x, y) {
+function draw(url, x, y, w, h) {
     var img = new Image();
     img.onload = function() {
-      ctx.drawImage(img, x, y);
+      ctx.drawImage(img, x, y, w, h);
     };
     img.src = url;
-    img.width = 99; 
-    img.height = 99;
   }
 
 ctx.fillStyle = board_color2;
@@ -37,4 +35,4 @@ for (i = 0; i < 64; i++) {
     }
 }
 
-draw("/src/pieces/black/pawn.svg", 0, 0);
+draw("/src/pieces/black/pawn.svg", 0, 0, 100, 100);
