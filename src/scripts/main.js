@@ -88,12 +88,13 @@ function getMousePos(canvas, evt) {
 function roundToSquareSize(size, value) {
   new_value = value * size;
   Math.round(new_value);
-  return new_value;
+  return (new_value / size);
 }
 
 ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
 
 elm.addEventListener("mousedown", function (e) {
   ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
+  console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
 }); 
 
