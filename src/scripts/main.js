@@ -36,11 +36,11 @@ for (i = 0; i < 64; i++) {
     }
 }
 
-draw("/src/pieces/black/pawn.svg", 0 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 1 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 2 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 3 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 4 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 5 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 6 * square_size, 6 * square_size, 61, 61);
-draw("/src/pieces/black/pawn.svg", 7 * square_size, 6 * square_size, 61, 61);
+draw("/src/pieces/black/pawn.svg", 0 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 1 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 2 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 3 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 4 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 5 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 6 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/black/pawn.svg", 7 * square_size, 6 * square_size, square_size, square_size);
