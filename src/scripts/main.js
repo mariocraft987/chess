@@ -87,6 +87,7 @@ function getMousePos(canvas, evt) {
 
 ctx.fillStyle = "rgb(255, 0, 0, 0.7)";
 
-const interval = setInterval(function() {
-    ctx.fillRect(getMousePos(elm, evt), y * square_size, square_size, square_size);
- }, 5000);
+canvasElem.addEventListener("mousedown", function (e) {
+  ctx.fillRect(getMousePos(canvas, e), getMousePos(canvas, e), square_size, square_size);
+}); 
+
