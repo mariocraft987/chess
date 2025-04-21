@@ -86,9 +86,7 @@ function getMousePos(canvas, evt) {
 }
 
 function roundToSquareSize(size, value) {
-  new_value = value * size;
-  Math.floor(new_value);
-  return (new_value / size);
+  return (Math.round(value / size) * size);
 }
 
 ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
