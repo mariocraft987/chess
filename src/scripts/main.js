@@ -75,3 +75,18 @@ draw("/src/pieces/black/king.svg", 4 * square_size, 0 * square_size, square_size
 draw("/src/pieces/black/bishop.svg", 5 * square_size, 0 * square_size, square_size, square_size);
 draw("/src/pieces/black/knight.svg", 6 * square_size, 0 * square_size, square_size, square_size);
 draw("/src/pieces/black/rook.svg", 7 * square_size, 0 * square_size, square_size, square_size);
+
+
+function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+
+ctx.fillStyle = "rgb(255, 0, 0, 0.7)";
+
+const interval = setInterval(function() {
+    ctx.fillRect(getMousePos(elm, evt), y * square_size, square_size, square_size);
+ }, 5000);
