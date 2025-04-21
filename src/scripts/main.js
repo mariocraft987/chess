@@ -36,11 +36,22 @@ for (i = 0; i < 64; i++) {
     }
 }
 
-draw("/src/pieces/black/pawn.svg", 0 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 1 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 2 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 3 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 4 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 5 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 6 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 7 * square_size, 6 * square_size, square_size, square_size);
+// white pawns
+draw("/src/pieces/white/pawn.svg", 0 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 1 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 2 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 3 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 4 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 5 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 6 * square_size, 6 * square_size, square_size, square_size);
+draw("/src/pieces/white/pawn.svg", 7 * square_size, 6 * square_size, square_size, square_size);
+
+// white pieces
+draw("/src/pieces/white/rook.svg", 0 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/knight.svg", 1 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/bishop.svg", 2 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/queen.svg", 3 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/king.svg", 4 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/bishop.svg", 5 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/knight.svg", 6 * square_size, 7 * square_size, square_size, square_size);
+draw("/src/pieces/white/rook.svg", 7 * square_size, 7 * square_size, square_size, square_size);
