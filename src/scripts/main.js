@@ -109,10 +109,10 @@ let board_pieces =
 setInterval(function () {
   for (n = 0; n < 64; n++) {
     if (board_pieces[n] != "") {
-      draw("/src/pieces/white/pawn.svg", (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+      draw("/src/pieces/white/" + board_pieces[n] + ".svg", (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
     }
   }
-}, 500);
+}, 100);
 
 /*
 // white pawns
