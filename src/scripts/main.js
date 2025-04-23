@@ -199,6 +199,7 @@ elm.addEventListener("mousedown", function (e) {
 
     if (board_pieces[findpiece] != "") {
       var piece = board_pieces[findpiece];
+      console.log(piece)
 
       if (piece == "white/pawn") {
         ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
