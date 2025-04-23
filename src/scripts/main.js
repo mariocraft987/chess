@@ -109,7 +109,34 @@ let board_pieces =
 setInterval(function () {
   for (n = 0; n < 64; n++) {
     if (board_pieces[n] != "") {
-      draw("/src/pieces/white/" + board_pieces[n] + ".svg", (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+
+      if (board_pieces[n] == "white_pawn") {
+        var filepath = "white/pawn";
+      } else if (board_pieces[n] == "white_king") {
+        var filepath = "white/king";
+      } else if (board_pieces[n] == "white_queen") {
+        var filepath = "white/queen";
+      } else if (board_pieces[n] == "white_bishop") {
+        var filepath = "white/bishop";
+      } else if (board_pieces[n] == "white_knight") {
+        var filepath = "white/knight";
+      } else if (board_pieces[n] == "white_rook") {
+        var filepath = "white/rook";
+      } else if (board_pieces[n] == "black_pawn") {
+        var filepath = "black/pawn";
+      } else if (board_pieces[n] == "black_king") {
+        var filepath = "black/king";
+      } else if (board_pieces[n] == "black_queen") {
+        var filepath = "black/queen";
+      } else if (board_pieces[n] == "black_bishop") {
+        var filepath = "black/bishop";
+      } else if (board_pieces[n] == "black_knight") {
+        var filepath = "black/knight";
+      } else if (board_pieces[n] == "black_rook") {
+        var filepath = "black/rook";
+      } 
+
+      draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
     }
   }
 }, 100);
