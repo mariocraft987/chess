@@ -198,11 +198,20 @@ elm.addEventListener("mousedown", function (e) {
     console.log(findpiece)
 
     if (board_pieces[findpiece] != "") {
-      ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
-      ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
+      var piece = board_pieces[findpiece];
+
+      if (piece == "white/pawn") {
+        ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
+        ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
+      }
+
+      if (piece == "white/knight") {
+        ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+        ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+      }
+
     }
 
-    var pieceon = ""
   }
 
 }); 
