@@ -21,6 +21,76 @@ function draw(url, x, y, w, h) {
     img.src = url;
   }
 
+  let board_pieces = 
+  {
+  
+    0: "black_rook",
+    1: "black_knight",
+    2: "black_bishop",
+    3: "black_queen",
+    4: "black_king",
+    5: "black_bishop",
+    6: "black_knight",
+    7: "black_rook",
+    8: "black_pawn",
+    9: "black_pawn",
+    10: "black_pawn",
+    11: "black_pawn",
+    12: "black_pawn",
+    13: "black_pawn",
+    14: "black_pawn",
+    15: "black_pawn",
+    16: "",
+    17: "",
+    18: "",
+    19: "",
+    20: "",
+    21: "",
+    22: "",
+    23: "",
+    24: "",
+    25: "",
+    26: "",
+    27: "",
+    28: "",
+    29: "",
+    30: "",
+    31: "",
+    32: "",
+    33: "",
+    34: "",
+    35: "",
+    36: "",
+    37: "",
+    38: "",
+    39: "",
+    40: "",
+    41: "",
+    42: "",
+    43: "",
+    44: "",
+    45: "",
+    46: "",
+    47: "",
+    48: "white_pawn",
+    49: "white_pawn",
+    50: "white_pawn",
+    51: "white_pawn",
+    52: "white_pawn",
+    53: "white_pawn",
+    54: "white_pawn",
+    55: "white_pawn",
+    56: "white_rook",
+    57: "white_knight",
+    58: "white_bishop",
+    59: "white_king",
+    60: "white_queen",
+    61: "white_bishop",
+    62: "white_knight",
+    63: "white_rook",
+  
+  };
+
 ctx.fillStyle = board_color2;
 ctx.fillRect(0, 0, 512, 512);
 
@@ -35,76 +105,6 @@ for (i = 0; i < 64; i++) {
         y++;
     }
 }
-
-let board_pieces = 
-{
-
-  0: "black_rook",
-  1: "black_knight",
-  2: "black_bishop",
-  3: "black_queen",
-  4: "black_king",
-  5: "black_bishop",
-  6: "black_knight",
-  7: "black_rook",
-  8: "black_pawn",
-  9: "black_pawn",
-  10: "black_pawn",
-  11: "black_pawn",
-  12: "black_pawn",
-  13: "black_pawn",
-  14: "black_pawn",
-  15: "black_pawn",
-  16: "",
-  17: "",
-  18: "",
-  19: "",
-  20: "",
-  21: "",
-  22: "",
-  23: "",
-  24: "",
-  25: "",
-  26: "",
-  27: "",
-  28: "",
-  29: "",
-  30: "",
-  31: "",
-  32: "",
-  33: "",
-  34: "",
-  35: "",
-  36: "",
-  37: "",
-  38: "",
-  39: "",
-  40: "",
-  41: "",
-  42: "",
-  43: "",
-  44: "",
-  45: "",
-  46: "",
-  47: "",
-  48: "white_pawn",
-  49: "white_pawn",
-  50: "white_pawn",
-  51: "white_pawn",
-  52: "white_pawn",
-  53: "white_pawn",
-  54: "white_pawn",
-  55: "white_pawn",
-  56: "white_rook",
-  57: "white_knight",
-  58: "white_bishop",
-  59: "white_king",
-  60: "white_queen",
-  61: "white_bishop",
-  62: "white_knight",
-  63: "white_rook",
-
-};
 
 setInterval(function () {
   for (n = 0; n < 64; n++) {
@@ -140,48 +140,6 @@ setInterval(function () {
     }
   }
 }, 100);
-
-/*
-// white pawns
-draw("/src/pieces/white/pawn.svg", 0 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 1 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 2 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 3 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 4 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 5 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 6 * square_size, 6 * square_size, square_size, square_size);
-draw("/src/pieces/white/pawn.svg", 7 * square_size, 6 * square_size, square_size, square_size);
-
-// white pieces
-draw("/src/pieces/white/rook.svg", 0 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/knight.svg", 1 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/bishop.svg", 2 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/queen.svg", 3 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/king.svg", 4 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/bishop.svg", 5 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/knight.svg", 6 * square_size, 7 * square_size, square_size, square_size);
-draw("/src/pieces/white/rook.svg", 7 * square_size, 7 * square_size, square_size, square_size);
-
-// black pawns
-draw("/src/pieces/black/pawn.svg", 0 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 1 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 2 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 3 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 4 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 5 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 6 * square_size, 1 * square_size, square_size, square_size);
-draw("/src/pieces/black/pawn.svg", 7 * square_size, 1 * square_size, square_size, square_size);
-
-// black pieces
-draw("/src/pieces/black/rook.svg", 0 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/knight.svg", 1 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/bishop.svg", 2 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/queen.svg", 3 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/king.svg", 4 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/bishop.svg", 5 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/knight.svg", 6 * square_size, 0 * square_size, square_size, square_size);
-draw("/src/pieces/black/rook.svg", 7 * square_size, 0 * square_size, square_size, square_size);
-*/
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
