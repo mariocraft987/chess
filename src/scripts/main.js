@@ -106,11 +106,13 @@ let board_pieces =
 
 };
 
-for (n = 0; n < 64; n++) {
-  if (board_pieces[n] != "") {
-    draw("/src/pieces/white/pawn.svg", (Math.round(n % 8)) * square_size, (Math.round(n / 8)) * square_size, square_size, square_size);
+setInterval(function () {
+  for (n = 0; n < 64; n++) {
+    if (board_pieces[n] != "") {
+      draw("/src/pieces/white/pawn.svg", (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+    }
   }
-}
+}, 500);
 
 /*
 // white pawns
