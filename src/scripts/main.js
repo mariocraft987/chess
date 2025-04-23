@@ -186,9 +186,6 @@ elm.addEventListener("mousedown", function (e) {
     ctx.fillStyle = "rgb(0, 0, 0, 0.5)";
     var mousex = roundToSquareSize(square_size, getMousePos(elm, e).x)
     var mousey = roundToSquareSize(square_size, getMousePos(elm, e).y) 
-    
-    mousex = mousex % square_size;
-    mousey = mousey % square_size;
 
     ctx.fillRect(mousex, mousey + square_size, square_size, square_size);
   }
