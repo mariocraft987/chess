@@ -170,5 +170,10 @@ elm.addEventListener("mousedown", function (e) {
     console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
   }
 
+  // left click
+  if (e.button == 0) {
+    drawBoard();
+  }
+
 }); 
 
