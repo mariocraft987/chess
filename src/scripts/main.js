@@ -160,12 +160,12 @@ function roundToSquareSize(size, value) {
   return (Math.round(value / size) * size);
 }
 
-ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
-
 elm.addEventListener("mousedown", function (e) {
 
   // right click
   if (e.button == 2) {
+    ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
+    
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
     console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
   }
