@@ -48,7 +48,7 @@ let board_pieces =
     23: "",
     24: "",
     25: "",
-    26: "duck",
+    26: "",
     27: "",
     28: "",
     29: "",
@@ -92,7 +92,7 @@ let board_pieces =
 function drawBoard() {
   let x = 1; // start on square zero
   let y = 0;
-  
+
   ctx.fillStyle = board_color2;
   ctx.fillRect(0, 0, 512, 512);
 
