@@ -190,9 +190,9 @@ elm.addEventListener("mousedown", function (e) {
     var rmousex = roundToSquareSize(square_size, mousex)
     var rmousey = roundToSquareSize(square_size, mousey)
     
-    var findpiece_x = Math.round(mousex / square_size);
-    var findpiece_y = Math.round(mousey / square_size);
-    var findpiece = findpiece_x + findpiece_y;
+    var findpiece_x = Math.round(rmousex / square_size);
+    var findpiece_y = Math.round(rmousey / square_size);
+    var findpiece = findpiece_x * findpiece_y;
     console.log(findpiece)
 
     if (board_pieces[findpiece] != "") {
