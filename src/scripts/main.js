@@ -206,6 +206,22 @@ elm.addEventListener("mousedown", function (e) {
         ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
       }
 
+      if (piece == "white_king") {
+        ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+        ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+      }
+
+      if (piece == "queen") {
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
+        }
+      }
+
+      if (piece == "white_knight") {
+        ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+        ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+      }
+
       if (piece == "white_knight") {
         ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
         ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
