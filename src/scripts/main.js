@@ -109,45 +109,47 @@ function drawBoard() {
   }
 }
 
+function drawPieces() {
+    for (n = 0; n < 64; n++) {
+      if (board_pieces[n] != "") {
+  
+        if (board_pieces[n] == "white_pawn") {
+          var filepath = "white/pawn";
+        } else if (board_pieces[n] == "white_king") {
+          var filepath = "white/king";
+        } else if (board_pieces[n] == "white_queen") {
+          var filepath = "white/queen";
+        } else if (board_pieces[n] == "white_bishop") {
+          var filepath = "white/bishop";
+        } else if (board_pieces[n] == "white_knight") {
+          var filepath = "white/knight";
+        } else if (board_pieces[n] == "white_rook") {
+          var filepath = "white/rook";
+        } else if (board_pieces[n] == "black_pawn") {
+          var filepath = "black/pawn";
+        } else if (board_pieces[n] == "black_king") {
+          var filepath = "black/king";
+        } else if (board_pieces[n] == "black_queen") {
+          var filepath = "black/queen";
+        } else if (board_pieces[n] == "black_bishop") {
+          var filepath = "black/bishop";
+        } else if (board_pieces[n] == "black_knight") {
+          var filepath = "black/knight";
+        } else if (board_pieces[n] == "black_rook") {
+          var filepath = "black/rook";
+        }  else if (board_pieces[n] == "duck") {
+          var filepath = "special/duck";
+        } 
+  
+        draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+      }
+    }
+}
+
 // draw checkboard on canvas
 drawBoard();
 
-setInterval(function () {
-  for (n = 0; n < 64; n++) {
-    if (board_pieces[n] != "") {
-
-      if (board_pieces[n] == "white_pawn") {
-        var filepath = "white/pawn";
-      } else if (board_pieces[n] == "white_king") {
-        var filepath = "white/king";
-      } else if (board_pieces[n] == "white_queen") {
-        var filepath = "white/queen";
-      } else if (board_pieces[n] == "white_bishop") {
-        var filepath = "white/bishop";
-      } else if (board_pieces[n] == "white_knight") {
-        var filepath = "white/knight";
-      } else if (board_pieces[n] == "white_rook") {
-        var filepath = "white/rook";
-      } else if (board_pieces[n] == "black_pawn") {
-        var filepath = "black/pawn";
-      } else if (board_pieces[n] == "black_king") {
-        var filepath = "black/king";
-      } else if (board_pieces[n] == "black_queen") {
-        var filepath = "black/queen";
-      } else if (board_pieces[n] == "black_bishop") {
-        var filepath = "black/bishop";
-      } else if (board_pieces[n] == "black_knight") {
-        var filepath = "black/knight";
-      } else if (board_pieces[n] == "black_rook") {
-        var filepath = "black/rook";
-      }  else if (board_pieces[n] == "duck") {
-        var filepath = "special/duck";
-      } 
-
-      draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
-    }
-  }
-}, 100);
+setInterval(drawPieces(), 100);
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
@@ -174,6 +176,7 @@ elm.addEventListener("mousedown", function (e) {
   // left click
   if (e.button == 0) {
     drawBoard();
+    drawPieces()
   }
 
 }); 
