@@ -187,8 +187,8 @@ elm.addEventListener("mousedown", function (e) {
     var mousex = roundToSquareSize(square_size, getMousePos(elm, e).x)
     var mousey = roundToSquareSize(square_size, getMousePos(elm, e).y)
     
-    var findpiece_x = Math.round(mousex / square_size);
-    var findpiece_y = Math.round(mousey / square_size);
+    var findpiece_x = Math.floor(mousex / square_size);
+    var findpiece_y = Math.floor(mousey / square_size);
     var findpiece = findpiece_x * findpiece_y;
 
     if (board_pieces[findpiece] != "") {
