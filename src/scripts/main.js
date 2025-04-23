@@ -100,7 +100,7 @@ let board_pieces =
   58: "white_bishop",
   59: "white_king",
   60: "white_queen",
-  61: "white_bishpp",
+  61: "white_bishop",
   62: "white_knight",
   63: "white_rook",
 
