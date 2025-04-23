@@ -180,7 +180,7 @@ elm.addEventListener("mousedown", function (e) {
     drawBoard();
     drawPieces()
 
-    ctx.fillStyle = "rgb(0, 0, 0, 0.55)";
+    ctx.fillStyle = "#F7F57D";
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
   }
 
