@@ -100,10 +100,9 @@ let board_pieces =
   58: "white_bishop",
   59: "white_king",
   60: "white_queen",
-  61: "white_king",
-  62: "white_bishop",
-  63: "white_knight",
-  64: "white_rook"
+  61: "white_bishpp",
+  62: "white_knight",
+  63: "white_rook",
 
 };
 
