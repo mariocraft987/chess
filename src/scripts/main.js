@@ -187,7 +187,8 @@ elm.addEventListener("mousedown", function (e) {
     var mousex = roundToSquareSize(square_size, getMousePos(elm, e).x)
     var mousey = roundToSquareSize(square_size, getMousePos(elm, e).y) 
 
-    ctx.fillRect(mousex, mousey + square_size, square_size, square_size);
+    ctx.fillRect(mousex, mousey - square_size, square_size, square_size);
+    ctx.fillRect(mousex, mousey - (square_size * 2), square_size, square_size);
   }
 
 }); 
