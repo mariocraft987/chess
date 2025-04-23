@@ -107,7 +107,9 @@ let board_pieces =
 };
 
 for (n = 0; n < 64; n++) {
-  console.log(board_pieces[n])
+  if (board_pieces[n] != "") {
+    draw("/src/pieces/white/pawn.svg", (Math.round(n % 8)) * square_size, (Math.round(n / 8)) * square_size, square_size, square_size);
+  }
 }
 
 /*
