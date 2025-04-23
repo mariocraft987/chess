@@ -192,8 +192,9 @@ elm.addEventListener("mousedown", function (e) {
     
     var findpiece_x = rmousex
     var findpiece_y = rmousey
-    var findpiece = (findpiece_x * findpiece_y) / (square_size / square_size);
-    console.log(findpiece)
+    var findpiece = (findpiece_x * findpiece_y);
+    console.log(findpiece_x)
+    console.log(findpiece_y)
 
     if (board_pieces[findpiece] != "") {
       ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
