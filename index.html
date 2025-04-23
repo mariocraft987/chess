@@ -18,7 +18,14 @@
 <body>
     <h1>ChessGG</h1>
     <p>An open-source HTML/JS Chess project</p>
-    <canvas id="board" width="512" height="512"></canvas>
+    <div>
+        <canvas id="board" width="512" height="512"></canvas>
+        <div style="float: right;">
+            <button><img src="/src/pieces/white/king.svg" width="40"><br/>Vanilla Chess</button>
+            <button><img src="/src/pieces/black/rook.svg" width="40"><br/>Chess 960</button>
+            <button><img src="/src/pieces/special/duck.svg" width="40"><br/>Duck Chess</button>
+        </div>
+    </div>
     <br/>
     <p>Checklist</p>
     <ul>
@@ -28,10 +35,6 @@
         <li>Moving pieces</li>
         <li>Online</li>
     </ul>
-    <p>Please select a gamemode</p>
-    <button><img src="/src/pieces/white/king.svg" width="45"><br/>Vanilla Chess</button>
-    <button><img src="/src/pieces/black/rook.svg" width="45"><br/>Chess 960</button>
-    <button><img src="/src/pieces/special/duck.svg" width="45"><br/>Duck Chess</button>
 </body>
 <script src="/src/scripts/main.js"></script>
 </html>
