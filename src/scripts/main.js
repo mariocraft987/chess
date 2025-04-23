@@ -91,20 +91,25 @@ function draw(url, x, y, w, h) {
   
   };
 
-ctx.fillStyle = board_color2;
-ctx.fillRect(0, 0, 512, 512);
+function drawBoard() {
+  ctx.fillStyle = board_color2;
+  ctx.fillRect(0, 0, 512, 512);
 
-// fill checkboard pattern
-ctx.fillStyle = board_color1;
-for (i = 0; i < 64; i++) {
-    ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
-    x += 2;
+  // fill checkboard pattern
+  ctx.fillStyle = board_color1;
+  for (i = 0; i < 64; i++) {
+      ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
+      x += 2;
 
-    if (x > 8) {
-        x -= 9;
-        y++;
-    }
+      if (x > 8) {
+          x -= 9;
+          y++;
+      }
+  }
 }
+
+// draw checkboard on canvas
+drawBoard();
 
 setInterval(function () {
   for (n = 0; n < 64; n++) {
