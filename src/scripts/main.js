@@ -201,12 +201,12 @@ elm.addEventListener("mousedown", function (e) {
       var piece = board_pieces[findpiece];
       console.log(piece)
 
-      if (piece == "white/pawn") {
+      if (piece == "white_pawn") {
         ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
         ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
       }
 
-      if (piece == "white/knight") {
+      if (piece == "white_knight") {
         ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
         ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
       }
