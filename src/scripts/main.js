@@ -184,17 +184,20 @@ elm.addEventListener("mousedown", function (e) {
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
     ctx.fillStyle = "rgb(0, 0, 0, 0.5)";
-    var mousex = roundToSquareSize(square_size, getMousePos(elm, e).x)
-    var mousey = roundToSquareSize(square_size, getMousePos(elm, e).y)
+    var mousex = getMousePos(elm, e).x;
+    var mousey = getMousePos(elm, e).y;
+
+    var rmousex = roundToSquareSize(square_size, mousex)
+    var rmousey = roundToSquareSize(square_size, mousey)
     
-    var findpiece_x = Math.floor(mousex / square_size);
-    var findpiece_y = Math.floor(mousey / square_size);
+    var findpiece_x = Math.round(mousex);
+    var findpiece_y = Math.floor(mousey);
     var findpiece = findpiece_x * findpiece_y;
     console.log(findpiece)
 
     if (board_pieces[findpiece] != "") {
-      ctx.fillRect(mousex, mousey - square_size, square_size, square_size);
-      ctx.fillRect(mousex, mousey - (square_size * 2), square_size, square_size);
+      ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
+      ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
     }
 
     var pieceon = ""
