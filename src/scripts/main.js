@@ -211,7 +211,7 @@ elm.addEventListener("mousedown", function (e) {
         ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
       }
 
-      if (piece == "queen") {
+      if (piece == "white_queen") {
         for (q = 0; q < 8; q++) {
           ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
         }
