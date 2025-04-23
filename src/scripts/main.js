@@ -212,7 +212,7 @@ elm.addEventListener("mousedown", function (e) {
       }
 
       if (piece == "white_queen") {
-        for (q = 0; q < 8; q++) {
+        for (q = 0; q < 16; q++) {
           ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
         }
       }
