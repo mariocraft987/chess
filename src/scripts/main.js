@@ -50,7 +50,7 @@ function draw(url, x, y, w, h) {
     23: "",
     24: "",
     25: "",
-    26: "",
+    26: "duck",
     27: "",
     28: "",
     29: "",
@@ -134,6 +134,8 @@ setInterval(function () {
         var filepath = "black/knight";
       } else if (board_pieces[n] == "black_rook") {
         var filepath = "black/rook";
+      }  else if (board_pieces[n] == "duck") {
+        var filepath = "special/duck";
       } 
 
       draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
