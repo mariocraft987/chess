@@ -4,8 +4,6 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-let x = 1; // start on square zero
-let y = 0;
 
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
@@ -21,8 +19,8 @@ function draw(url, x, y, w, h) {
     img.src = url;
   }
 
-  let board_pieces = 
-  {
+let board_pieces = 
+{
   
     0: "black_rook",
     1: "black_knight",
@@ -89,9 +87,12 @@ function draw(url, x, y, w, h) {
     62: "white_knight",
     63: "white_rook",
   
-  };
+};
 
 function drawBoard() {
+  let x = 1; // start on square zero
+  let y = 0;
+  
   ctx.fillStyle = board_color2;
   ctx.fillRect(0, 0, 512, 512);
 
@@ -165,7 +166,7 @@ elm.addEventListener("mousedown", function (e) {
   // right click
   if (e.button == 2) {
     ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
-    
+
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
     console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
   }
