@@ -325,10 +325,8 @@ elm.addEventListener("mousedown", function (e) {
         }
       }
 
-      for (r = 0; r < 3; r++) {
-        drawBoard();
-        drawPieces();
-      }
+      drawBoard();
+      drawPieces();
 
       selected_piece_id = "";
       selected_piece_pos = "";
