@@ -311,12 +311,18 @@ elm.addEventListener("mousedown", function (e) {
 
     } else {
       if (selected_piece_id == "white_pawn") {
+        console.log(findpiece + 8);
+        console.log(selected_piece_pos + 8);
+
         if (findpiece + 8 == selected_piece_pos + 8) {
           board_pieces[selected_piece_pos] += 8;
         } else if (findpiece + 16 == selected_piece_pos + 16) {
           board_pieces[selected_piece_pos] += 16;
         }
       }
+
+      drawBoard();
+      drawPieces()
 
       selected_piece_id = "";
       selected_piece_pos = "";
