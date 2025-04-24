@@ -184,7 +184,7 @@ elm.addEventListener("mousedown", function (e) {
     ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
 
     // ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
-    drawCircle(roundToSquareSize(square_size, getMousePos(elm, e).x) + (square_size / 2), roundToSquareSize(square_size, getMousePos(elm, e).y) + (square_size / 2), "red", 30)
+    drawCircle(roundToSquareSize(square_size, getMousePos(elm, e).x) + (square_size / 2), roundToSquareSize(square_size, getMousePos(elm, e).y) + (square_size / 2), "red", 1)
   }
 
   // left click
