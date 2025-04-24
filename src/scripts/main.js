@@ -310,6 +310,8 @@ elm.addEventListener("mousedown", function (e) {
       }
 
     } else {
+      // movement of pieces
+
       if (selected_piece_id == "white_pawn") {
         console.log("fp:" + (Number(findpiece) + 0));
         console.log("spp:" + (Number(selected_piece_pos) + 0));
@@ -317,19 +319,19 @@ elm.addEventListener("mousedown", function (e) {
         console.log("spp1:" + Number(findpiece) == Number(selected_piece_pos) + 16);
 
         if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
-          board_pieces[selected_piece_pos] = "";
         } else if (Number(findpiece) + 16 == Number(selected_piece_pos)) {
-          board_pieces[Number(selected_piece_pos) - 16] = selected_piece_id;
           board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) - 16] = selected_piece_id;
         }
       }
 
-      drawBoard();
-      drawPieces();
-
       selected_piece_id = "";
       selected_piece_pos = "";
+
+      drawBoard();
+      drawPieces();
     }
 
   }
