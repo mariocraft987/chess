@@ -180,10 +180,6 @@ elm.addEventListener("mousedown", function (e) {
     drawBoard();
     drawPieces()
 
-    ctx.fillStyle = "#F7F57D";
-    ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
-
-    ctx.fillStyle = "rgb(0, 0, 0, 0.35)";
     var mousex = getMousePos(elm, e).x;
     var mousey = getMousePos(elm, e).y;
 
@@ -198,6 +194,10 @@ elm.addEventListener("mousedown", function (e) {
     console.log(findpiece)
 
     if (board_pieces[findpiece] != "") {
+      ctx.fillStyle = "#F7F57D";
+      ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
+
+      ctx.fillStyle = "rgb(0, 0, 0, 0.35)";
       var piece = board_pieces[findpiece];
       console.log(piece)
 
