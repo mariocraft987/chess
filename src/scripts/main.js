@@ -210,11 +210,11 @@ elm.addEventListener("mousedown", function (e) {
       var tran_black = "rgb(0, 0, 0, 0.45)";
       var radius = 11
       var piece = board_pieces[findpiece];
-      console.log(piece)
+      console.log("piece:"+piece)
 
       selected_piece_id = piece;
       selected_piece_pos = findpiece;
-      console.log(findpiece)
+      console.log("findpiece:"+findpiece)
 
       if (piece == "white_pawn") {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
