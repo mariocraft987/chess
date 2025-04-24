@@ -313,13 +313,13 @@ elm.addEventListener("mousedown", function (e) {
       if (selected_piece_id == "white_pawn") {
         console.log("fp:" + (Number(findpiece) + 0));
         console.log("spp:" + (Number(selected_piece_pos) + 0));
+        console.log("fp1:" + Number(findpiece) == Number(selected_piece_pos) + 8);
+        console.log("spp1:" + Number(findpiece) + 16 == Number(selected_piece_pos) + 16);
 
         if (Number(findpiece) == Number(selected_piece_pos) + 8) {
-          console.log("pawn move 1 square!")
           board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
         } else if (Number(findpiece) + 16 == Number(selected_piece_pos) + 16) {
-          console.log("pawn move 2 squares!")
           board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) - 16] = selected_piece_id;
         }
