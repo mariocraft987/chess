@@ -274,6 +274,19 @@ elm.addEventListener("mousedown", function (e) {
       }
 
       if (piece == "white_knight") {
+        drawCircle(rmousex - (square_size * 1), rmousey - (square_size * 2), tran_black, radius);
+        drawCircle(rmousex + (square_size * 1), rmousey - (square_size * 2), tran_black, radius);
+
+        drawCircle(rmousex - (square_size * 1), rmousey + (square_size * 2), tran_black, radius);
+        drawCircle(rmousex + (square_size * 1), rmousey + (square_size * 2), tran_black, radius);
+
+        drawCircle(rmousex - (square_size * 2), rmousey - (square_size * 1), tran_black, radius);
+        drawCircle(rmousex - (square_size * 2), rmousey + (square_size * 1), tran_black, radius);
+
+        drawCircle(rmousex + (square_size * 2), rmousey - (square_size * 1), tran_black, radius);
+        drawCircle(rmousex + (square_size * 2), rmousey + (square_size * 1), tran_black, radius);
+
+
         ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
         ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
 
