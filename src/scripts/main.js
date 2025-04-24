@@ -314,7 +314,7 @@ elm.addEventListener("mousedown", function (e) {
         console.log("fp:" + (Number(findpiece) + 0));
         console.log("spp:" + (Number(selected_piece_pos) + 0));
         console.log("fp1:" + Number(findpiece) == Number(selected_piece_pos) + 8);
-        console.log("spp1:" + Number(findpiece) + 16 == Number(selected_piece_pos) + 16);
+        console.log("spp1:" + Number(findpiece) == Number(selected_piece_pos) + 16);
 
         if (Number(findpiece) == Number(selected_piece_pos) + 8) {
           board_pieces[selected_piece_pos] = "";
