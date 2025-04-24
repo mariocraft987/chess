@@ -243,32 +243,32 @@ elm.addEventListener("mousedown", function (e) {
 
         // bishop movement
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
       }
 
       if (piece == "white_bishop") {
 
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
 
       }
@@ -290,16 +290,16 @@ elm.addEventListener("mousedown", function (e) {
       if (piece == "white_rook") {
         
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey, tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey, square_size, square_size);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey, tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex, rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex, rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex, rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+          drawCircle(rmousex, rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
 
       }
