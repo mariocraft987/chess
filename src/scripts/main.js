@@ -183,7 +183,7 @@ elm.addEventListener("mousedown", function (e) {
     ctx.fillStyle = "#F7F57D";
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-    ctx.fillStyle = "rgb(0, 0, 0, 0.5)";
+    ctx.fillStyle = "rgb(0, 0, 0, 0.35)";
     var mousex = getMousePos(elm, e).x;
     var mousey = getMousePos(elm, e).y;
 
