@@ -310,6 +310,14 @@ elm.addEventListener("mousedown", function (e) {
       }
 
     } else {
+      if (selected_piece_id == "white_pawn") {
+        if (findpiece + 8 == selected_piece_pos + 8) {
+          board_pieces[selected_piece_pos] += 8;
+        } else if (findpiece + 16 == selected_piece_pos + 16) {
+          board_pieces[selected_piece_pos] += 16;
+        }
+      }
+
       selected_piece_id = "";
       selected_piece_pos = "";
     }
