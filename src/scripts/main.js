@@ -220,7 +220,8 @@ elm.addEventListener("mousedown", function (e) {
 
       var tran_black = "rgb(0, 0, 0, 0.45)";
       var radius = 11
-      var line_width = 6
+      var radius_plus = 25
+      var line_width = 5.3
       var piece = board_pieces[findpiece];
       console.log("piece:"+piece)
 
@@ -234,7 +235,7 @@ elm.addEventListener("mousedown", function (e) {
 
         if (selected_piece_pos >  47 && selected_piece_pos < 56) {
           //drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
-          drawCircleOutline(rmousex, rmousey - (square_size * 2), tran_black, radius + 10, line_width)
+          drawCircleOutline(rmousex, rmousey - (square_size * 2), tran_black, radius_plus, line_width)
         }
       }
 
