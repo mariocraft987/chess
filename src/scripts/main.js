@@ -148,6 +148,7 @@ function drawPieces() {
 
 // draw checkboard on canvas
 drawBoard();
+drawPieces();
 
 // setInterval(drawPieces, 100);
 
