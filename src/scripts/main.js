@@ -179,7 +179,7 @@ function roundToSquareSize(size, value) {
 elm.addEventListener("mousedown", function (e) {
 
   // log mouse x, and y to console
-  console.log("------------------------------------")
+  console.log("-------------------------------------------")
   console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
 
   // right click
@@ -310,8 +310,8 @@ elm.addEventListener("mousedown", function (e) {
 
     } else {
       if (selected_piece_id == "white_pawn") {
-        console.log("fp:" + (Number(findpiece) + 8));
-        console.log("spp:" + (Number(selected_piece_pos) + 8));
+        console.log("fp:" - (Number(findpiece) + 8));
+        console.log("spp:" - (Number(selected_piece_pos) + 8));
 
         if (Number(findpiece) == Number(selected_piece_pos) + 8) {
           board_pieces[selected_piece_pos] = "";
