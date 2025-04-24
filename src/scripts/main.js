@@ -208,8 +208,8 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-      var tran_black = "rgb(0, 0, 0, 0.5)";
-      var radius = 12
+      var tran_black = "rgb(0, 0, 0, 0.45)";
+      var radius = 11
       var piece = board_pieces[findpiece];
       console.log(piece)
 
@@ -219,26 +219,26 @@ elm.addEventListener("mousedown", function (e) {
       }
 
       if (piece == "white_king") {
-        ctx.fillRect(rmousex - (square_size * 1), rmousey, square_size, square_size);
-        ctx.fillRect(rmousex + (square_size * 1), rmousey, square_size, square_size);
-        ctx.fillRect(rmousex, rmousey - (square_size * 1), square_size, square_size);
-        ctx.fillRect(rmousex, rmousey + (square_size * 1), square_size, square_size);
+        drawCircle(rmousex + (square_size * 1), rmousey, tran_black, radius);
+        drawCircle(rmousex - (square_size * 1), rmousey, tran_black, radius);
+        drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
+        drawCircle(rmousex, rmousey + (square_size * 1), tran_black, radius);
       }
 
       if (piece == "white_queen") {
 
         // rook movement
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
+          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey, tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey, square_size, square_size);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey, tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex, rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+          drawCircle(rmousex, rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          ctx.fillRect(rmousex, rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+          drawCircle(rmousex, rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
 
         // bishop movement
