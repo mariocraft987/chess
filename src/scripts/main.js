@@ -220,7 +220,10 @@ elm.addEventListener("mousedown", function (e) {
 
       if (piece == "white_pawn") {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
-        drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
+
+        if (selected_piece_pos >  47 && selected_piece_pos < 56) {
+          drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
+        }
       }
 
       if (piece == "white_king") {
