@@ -216,6 +216,7 @@ elm.addEventListener("mousedown", function (e) {
       selected_piece_id = piece;
       selected_piece_pos = findpiece;
       console.log("findpiece:"+findpiece)
+      console.log("spp:"+selected_piece_pos)
 
       if (piece == "white_pawn") {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
