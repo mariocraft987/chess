@@ -4,6 +4,7 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
+let selected_piece = "";
 
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
@@ -208,6 +209,8 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
+      selected_piece = findpiece;
+
       var tran_black = "rgb(0, 0, 0, 0.45)";
       var radius = 11
       var piece = board_pieces[findpiece];
@@ -304,6 +307,8 @@ elm.addEventListener("mousedown", function (e) {
 
       }
 
+    } else {
+      selected_piece = "";
     }
 
   }
