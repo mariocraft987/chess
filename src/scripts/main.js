@@ -315,9 +315,11 @@ elm.addEventListener("mousedown", function (e) {
         console.log(selected_piece_pos + 8);
 
         if (findpiece + 8 == selected_piece_pos + 8) {
-          board_pieces[selected_piece_pos] += 8;
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[selected_piece_pos + 8] = selected_piece_id;
         } else if (findpiece + 16 == selected_piece_pos + 16) {
-          board_pieces[selected_piece_pos] += 16;
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[selected_piece_pos + 16] = selected_piece_id;
         }
       }
 
