@@ -209,12 +209,13 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
       var tran_black = "rgb(0, 0, 0, 0.35)";
+      var radius = 12
       var piece = board_pieces[findpiece];
       console.log(piece)
 
       if (piece == "white_pawn") {
-        drawCircle(roundToSquareSize(square_size, rmousex, rmousey + (square_size * 1), tran_black, 10))
-        drawCircle(roundToSquareSize(square_size, rmousex, rmousey + (square_size * 2), tran_black, 10))
+        drawCircle(roundToSquareSize(rmousex, rmousey + (square_size * 1), tran_black, radius))
+        drawCircle(roundToSquareSize(rmousex, rmousey + (square_size * 2), tran_black, radius))
       }
 
       if (piece == "white_king") {
