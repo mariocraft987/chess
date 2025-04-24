@@ -149,7 +149,7 @@ function drawPieces() {
 // draw checkboard on canvas
 drawBoard();
 
-setInterval(drawPieces(), 100);
+setInterval(drawPieces, 100);
 
 function getMousePos(canvas, evt) {
   var rect = canvas.getBoundingClientRect();
