@@ -4,7 +4,8 @@ let board_color2 = "#eeeed2";
 
 // math stuff
 let square_size = 64;
-let selected_piece = "";
+let selected_piece_id = "";
+let selected_piece_pos = "";
 
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
@@ -209,12 +210,13 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-      selected_piece = findpiece;
-
       var tran_black = "rgb(0, 0, 0, 0.45)";
       var radius = 11
       var piece = board_pieces[findpiece];
       console.log(piece)
+
+      selected_piece_id = piece;
+      selected_piece_pos = findpiece;
 
       if (piece == "white_pawn") {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
@@ -308,7 +310,8 @@ elm.addEventListener("mousedown", function (e) {
       }
 
     } else {
-      selected_piece = "";
+      selected_piece_id = "";
+      selected_piece_pos = "";
     }
 
   }
