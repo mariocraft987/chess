@@ -11,6 +11,7 @@ const ctx = elm.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 elm.oncontextmenu = () => false;
 
+
 function draw(url, x, y, w, h) {
     var img = new Image();
     img.onload = function() {
@@ -18,6 +19,15 @@ function draw(url, x, y, w, h) {
     };
     img.src = url;
   }
+
+function drawCircle(x, y, color, radius) {
+
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = color;
+  ctx.fill();
+
+}
 
 let board_pieces = 
 {
@@ -173,7 +183,8 @@ elm.addEventListener("mousedown", function (e) {
   if (e.button == 2) {
     ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
 
-    ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
+    // ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
+    drawCircle(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), "red", 70)
   }
 
   // left click
