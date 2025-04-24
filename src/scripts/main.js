@@ -202,9 +202,6 @@ elm.addEventListener("mousedown", function (e) {
     var findpiece_x = rmousex / square_size
     var findpiece_y = rmousey / square_size
     var findpiece = findpiece_x + (findpiece_y * 8);
-    console.log(findpiece_x)
-    console.log(findpiece_y)
-    console.log(findpiece)
 
     if (board_pieces[findpiece] != "") {
       ctx.fillStyle = "#F7F57D";
@@ -217,6 +214,9 @@ elm.addEventListener("mousedown", function (e) {
 
       selected_piece_id = piece;
       selected_piece_pos = findpiece;
+      console.log(findpiece_x)
+      console.log(findpiece_y)
+      console.log(findpiece)
 
       if (piece == "white_pawn") {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
