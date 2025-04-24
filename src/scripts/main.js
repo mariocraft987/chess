@@ -179,6 +179,7 @@ function roundToSquareSize(size, value) {
 elm.addEventListener("mousedown", function (e) {
 
   // log mouse x, and y to console
+  console.log("------------------------------------")
   console.log(`mouse x: ${getMousePos(elm, e).x}, mouse y: ${getMousePos(elm, e).y}`)
 
   // right click
