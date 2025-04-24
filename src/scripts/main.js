@@ -234,8 +234,11 @@ elm.addEventListener("mousedown", function (e) {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
 
         if (selected_piece_pos >  47 && selected_piece_pos < 56) {
-          //drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
-          drawCircleOutline(rmousex, rmousey - (square_size * 2), tran_black, radius_plus, line_width)
+          drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
+        }
+
+        if (board_pieces[selected_piece_pos - 9] == "black_pawn") {
+          drawCircleOutline(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
       }
 
