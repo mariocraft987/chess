@@ -22,14 +22,24 @@ function draw(url, x, y, w, h) {
     img.src = url;
   }
 
-function drawCircle(x, y, color, radius) {
+  function drawCircle(x, y, color, radius) {
 
-  ctx.beginPath();
-  ctx.arc(x + (square_size / 2), y + (square_size / 2), radius, 0, 2 * Math.PI, false);
-  ctx.fillStyle = color;
-  ctx.fill();
+    ctx.beginPath();
+    ctx.arc(x + (square_size / 2), y + (square_size / 2), radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = color;
+    ctx.fill();
+  
+  }
 
-}
+  function drawCircleOutline(x, y, color, radius, line_width) {
+
+    ctx.beginPath();
+    ctx.arc(x + (square_size / 2), y + (square_size / 2), radius, 0, 2 * Math.PI, false);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = line_width;
+    ctx.stroke();
+  
+  }
 
 let board_pieces = 
 {
@@ -222,7 +232,8 @@ elm.addEventListener("mousedown", function (e) {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
 
         if (selected_piece_pos >  47 && selected_piece_pos < 56) {
-          drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
+          //drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
+          drawCircleOutline(rmousex, rmousey - (square_size * 2), tran_black, radius, 3)
         }
       }
 
