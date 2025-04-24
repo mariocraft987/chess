@@ -229,14 +229,43 @@ elm.addEventListener("mousedown", function (e) {
         }
       }
 
-      if (piece == "white_knight") {
-        ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
-        ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+      if (piece == "white_bishop") {
+
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+        }
+
       }
 
       if (piece == "white_knight") {
         ctx.fillRect(rmousex - (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
         ctx.fillRect(rmousex + (square_size * 1), rmousey - (square_size * 2), square_size, square_size);
+      }
+
+      if (piece == "white_rook") {
+        
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey, square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex, rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex, rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+        }
+
       }
 
     }
