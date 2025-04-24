@@ -23,7 +23,7 @@ function draw(url, x, y, w, h) {
 function drawCircle(x, y, color, radius) {
 
   ctx.beginPath();
-  ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+  ctx.arc(x + (square_size / 2), y + (square_size / 2), radius, 0, 2 * Math.PI, false);
   ctx.fillStyle = color;
   ctx.fill();
 
@@ -183,8 +183,7 @@ elm.addEventListener("mousedown", function (e) {
   if (e.button == 2) {
     ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
 
-    // ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
-    drawCircle(roundToSquareSize(square_size, getMousePos(elm, e).x) + (square_size / 2), roundToSquareSize(square_size, getMousePos(elm, e).y) + (square_size / 2), "red", 10)
+    ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
   }
 
   // left click
@@ -209,13 +208,13 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-      ctx.fillStyle = "rgb(0, 0, 0, 0.35)";
+      var tran_black = "rgb(0, 0, 0, 0.35)";
       var piece = board_pieces[findpiece];
       console.log(piece)
 
       if (piece == "white_pawn") {
-        ctx.fillRect(rmousex, rmousey - square_size, square_size, square_size);
-        ctx.fillRect(rmousex, rmousey - (square_size * 2), square_size, square_size);
+        drawCircle(roundToSquareSize(square_size, rmousex, rmousey + (square_size * 1), tran_black, 10))
+        drawCircle(roundToSquareSize(square_size, rmousex, rmousey + (square_size * 2), tran_black, 10))
       }
 
       if (piece == "white_king") {
