@@ -309,15 +309,15 @@ elm.addEventListener("mousedown", function (e) {
 
     } else {
       if (selected_piece_id == "white_pawn") {
-        console.log("fp:"+findpiece);
-        console.log("spp:"+selected_piece_pos);
+        console.log("fp:"+Number(findpiece) + 8);
+        console.log("spp:"+Number(selected_piece_pos) + 8);
 
-        if (findpiece + 8 == selected_piece_pos + 8) {
+        if (Number(findpiece) + 8 == Number(selected_piece_pos) + 8) {
           board_pieces[selected_piece_pos] = "";
-          board_pieces[selected_piece_pos - 8] = selected_piece_id;
-        } else if (findpiece + 16 == selected_piece_pos + 16) {
+          board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
+        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) + 16) {
           board_pieces[selected_piece_pos] = "";
-          board_pieces[selected_piece_pos - 16] = selected_piece_id;
+          board_pieces[Number(selected_piece_pos) - 16] = selected_piece_id;
         }
       }
 
