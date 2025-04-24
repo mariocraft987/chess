@@ -214,8 +214,6 @@ elm.addEventListener("mousedown", function (e) {
 
       selected_piece_id = piece;
       selected_piece_pos = findpiece;
-      console.log(findpiece_x)
-      console.log(findpiece_y)
       console.log(findpiece)
 
       if (piece == "white_pawn") {
