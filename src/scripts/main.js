@@ -208,14 +208,14 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-      var tran_black = "black";
+      var tran_black = "rgb(0, 0, 0, 0.5)";
       var radius = 12
       var piece = board_pieces[findpiece];
       console.log(piece)
 
       if (piece == "white_pawn") {
-        drawCircle(rmousex, rmousey + (square_size * 1), tran_black, radius);
-        drawCircle(rmousex, rmousey + (square_size * 2), tran_black, radius);
+        drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
+        drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
       }
 
       if (piece == "white_king") {
