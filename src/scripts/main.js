@@ -215,6 +215,7 @@ elm.addEventListener("mousedown", function (e) {
 
       if (piece == "white_queen") {
 
+        // rook movement
         for (q = 0; q < 8; q++) {
           ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey, square_size, square_size);
         }
@@ -226,6 +227,20 @@ elm.addEventListener("mousedown", function (e) {
         }
         for (q = 0; q < 8; q++) {
           ctx.fillRect(rmousex, rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
+        }
+
+        // bishop movement
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), square_size, square_size);
+        }
+        for (q = 0; q < 8; q++) {
+          ctx.fillRect(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), square_size, square_size);
         }
       }
 
