@@ -365,6 +365,20 @@ elm.addEventListener("mousedown", function (e) {
           board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
         }
+
+        else if (Number(findpiece) - 7 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) + 7] = selected_piece_id;
+        } else if (Number(findpiece) - 9 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) + 9] = selected_piece_id;
+        } else if (Number(findpiece) + 7 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) - 7] = selected_piece_id;
+        } else if (Number(findpiece) + 9 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) - 9] = selected_piece_id;
+        }
       }
 
       selected_piece_id = "";
