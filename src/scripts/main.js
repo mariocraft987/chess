@@ -1,4 +1,5 @@
 // chessboard colors
+let style = "classic";
 let board_color1 = "#769656";
 let board_color2 = "#eeeed2";
 
@@ -12,7 +13,6 @@ const elm = document.getElementById("board");
 const ctx = elm.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 elm.oncontextmenu = () => false;
-
 
 function draw(url, x, y, w, h) {
     var img = new Image();
@@ -40,6 +40,38 @@ function draw(url, x, y, w, h) {
     ctx.stroke();
   
   }
+
+function changeBoardStyle(id) {
+  style = id;
+
+  if (style == "classic") {
+    board_color1 = "#769656";
+    board_color2 = "#eeeed2";
+  }
+
+  if (style == "purple") {
+    board_color1 = "#8476ba";
+    board_color2 = "#f0f1f0";
+  }
+
+  if (style == "brown") {
+    board_color1 = "#b88762";
+    board_color2 = "#edd6b0";
+  }
+
+  if (style == "red") {
+    board_color1 = "#bb5746";
+    board_color2 = "#f5dbc3";
+  }
+
+  if (style == "tournament") {
+    board_color1 = "#316548";
+    board_color2 = "#eaeae7";
+  }
+
+  drawBoard();
+  drawPieces();
+}
 
 let board_pieces = 
 {
@@ -112,15 +144,15 @@ let board_pieces =
 };
 
 function drawBoard() {
-  let x = 1; // start on square zero
-  let y = 0;
+    let x = 1; // start on square zero
+    let y = 0;
 
-  ctx.fillStyle = board_color2;
-  ctx.fillRect(0, 0, 512, 512);
+    ctx.fillStyle = board_color2;
+    ctx.fillRect(0, 0, 512, 512);
 
-  // fill checkboard pattern
-  ctx.fillStyle = board_color1;
-  for (i = 0; i < 64; i++) {
+    // fill checkboard pattern
+    ctx.fillStyle = board_color1;
+    for (i = 0; i < 64; i++) {
       ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
       x += 2;
 
@@ -128,7 +160,8 @@ function drawBoard() {
           x -= 9;
           y++;
       }
-  }
+    }
+
 }
 
 function drawPieces() {
