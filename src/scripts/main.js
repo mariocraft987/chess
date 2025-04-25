@@ -355,10 +355,10 @@ elm.addEventListener("mousedown", function (e) {
           board_pieces[Number(selected_piece_pos) + 8] = selected_piece_id;
       } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
         board_pieces[selected_piece_pos] = "";
-        board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
+        board_pieces[Number(selected_piece_pos) - 1] = selected_piece_id;
       } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
         board_pieces[selected_piece_pos] = "";
-        board_pieces[Number(selected_piece_pos) - 1] = selected_piece_id;
+        board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
       }
       }
 
