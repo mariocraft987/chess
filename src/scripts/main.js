@@ -345,6 +345,17 @@ elm.addEventListener("mousedown", function (e) {
         }
       }
 
+      if (selected_piece_id == "white_king") {
+
+        if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
+            board_pieces[selected_piece_pos] = "";
+            board_pieces[Number(selected_piece_pos) + 8] = selected_piece_id;
+        } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
+            board_pieces[selected_piece_pos] = "";
+            board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
+        }
+      }
+
       selected_piece_id = "";
       selected_piece_pos = "";
 
