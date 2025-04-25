@@ -387,7 +387,7 @@ elm.addEventListener("mousedown", function (e) {
       setTimeout(function (){
         drawBoard();
         drawPieces();
-      }, 200);
+      }, 70);
     }
 
   }
