@@ -250,6 +250,11 @@ elm.addEventListener("mousedown", function (e) {
         drawCircle(rmousex - (square_size * 1), rmousey, tran_black, radius);
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
         drawCircle(rmousex, rmousey + (square_size * 1), tran_black, radius);
+
+        drawCircle(rmousex + (square_size * 1), rmousey + (square_size * 1), tran_black, radius);
+        drawCircle(rmousex - (square_size * 1), rmousey + (square_size * 1), tran_black, radius);
+        drawCircle(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius);
+        drawCircle(rmousex + (square_size * 1), rmousey - (square_size * 1), tran_black, radius);
       }
 
       if (piece == "white_queen") {
@@ -350,16 +355,16 @@ elm.addEventListener("mousedown", function (e) {
         if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
           board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
-      } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
+        } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
           board_pieces[selected_piece_pos] = "";
           board_pieces[Number(selected_piece_pos) + 8] = selected_piece_id;
-      } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
-        board_pieces[selected_piece_pos] = "";
-        board_pieces[Number(selected_piece_pos) - 1] = selected_piece_id;
-      } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
-        board_pieces[selected_piece_pos] = "";
-        board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
-      }
+        } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) - 1] = selected_piece_id;
+        } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
+          board_pieces[selected_piece_pos] = "";
+          board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
+        }
       }
 
       selected_piece_id = "";
