@@ -22,6 +22,13 @@ function draw(url, x, y, w, h) {
     img.src = url;
   }
 
+  function writeText(txt, x, y, font = "14px sans-serif", color = "blue") {
+    ctx.font = font;
+    ctx.fillStyle = color;
+    ctx.fillText(txt, x, y);
+    
+  }
+
   function drawCircle(x, y, color, radius) {
 
     ctx.beginPath();
@@ -161,6 +168,25 @@ function drawBoard() {
           y++;
       }
     }
+
+    writeText("8", (square_size * 0) + 2, (square_size * 0) + 14, "15px sans-serif", board_color1);
+    writeText("7", (square_size * 0) + 2, (square_size * 1) + 14, "15px sans-serif", board_color2);
+    writeText("6", (square_size * 0) + 2, (square_size * 2) + 14, "15px sans-serif", board_color1);
+    writeText("5", (square_size * 0) + 2, (square_size * 3) + 14, "15px sans-serif", board_color2);
+    writeText("4", (square_size * 0) + 2, (square_size * 4) + 14, "15px sans-serif", board_color1);
+    writeText("3", (square_size * 0) + 2, (square_size * 5) + 14, "15px sans-serif", board_color2);
+    writeText("2", (square_size * 0) + 2, (square_size * 6) + 14, "15px sans-serif", board_color1);
+    writeText("1", (square_size * 0) + 2, (square_size * 7) + 14, "15px sans-serif", board_color2);
+
+    writeText("a", (square_size * 0) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
+    writeText("b", (square_size * 1) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
+    writeText("c", (square_size * 2) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
+    writeText("d", (square_size * 3) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
+    writeText("e", (square_size * 4) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
+    writeText("f", (square_size * 5) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
+    writeText("g", (square_size * 6) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
+    writeText("h", (square_size * 7) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
+
 
 }
 
