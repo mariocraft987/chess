@@ -1,5 +1,5 @@
 // chessboard colors
-let style = "classic";
+let style = "brown";
 let board_color1 = "#769656";
 let board_color2 = "#eeeed2";
 
@@ -7,6 +7,10 @@ let board_color2 = "#eeeed2";
 let square_size = 64;
 let selected_piece_id = "";
 let selected_piece_pos = "";
+
+// sfx variables
+let move_sfx = new Audio("/src/sfx/move-self.mp3");
+let capture_sfx = new Audio("/src/sfx/capture.mp3");
 
 // get canvas id and ctx 2d
 const elm = document.getElementById("board");
@@ -46,6 +50,14 @@ function draw(url, x, y, w, h) {
     ctx.lineWidth = line_width;
     ctx.stroke();
   
+  }
+
+  function playSound(sfx) {
+    if (sfx == "move") {
+      move_sfx.play();
+    } else if (sfx == "capture") {
+      capture_sfx.play();
+    }
   }
 
 function changeBoardStyle(id) {
@@ -227,6 +239,24 @@ function drawPieces() {
     }
 }
 
+function movePiece(last_position, movement, piece) {
+    board_pieces[last_position] = "";
+    board_pieces[Number(selected_piece_pos) - movement] = piece;
+
+    playSound("move");
+}
+
+function capturePiece(capture, last_position, piece) {
+  board_pieces[last_position] = "";
+  board_pieces[capture] = piece;
+
+  playSound("capture");
+}
+
+function convertPiece(pos, result) {
+  board_pieces[pos] = result;
+}
+
 // draw checkboard on canvas
 drawBoard();
 drawPieces();
@@ -273,7 +303,7 @@ elm.addEventListener("mousedown", function (e) {
     var findpiece_y = rmousey / square_size
     var findpiece = findpiece_x + (findpiece_y * 8);
 
-    if (board_pieces[findpiece] != "") {
+    if (board_pieces[findpiece].includes("white")) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
@@ -296,10 +326,10 @@ elm.addEventListener("mousedown", function (e) {
           drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
         }
 
-        if (board_pieces[selected_piece_pos - 9] == "black_pawn") {
+        if (board_pieces[selected_piece_pos - 9].includes("black")) {
           drawCircleOutline(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
-        if (board_pieces[selected_piece_pos - 7] == "black_pawn") {
+        if (board_pieces[selected_piece_pos - 7].includes("black")) {
           drawCircleOutline(rmousex + (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
       }
@@ -400,43 +430,84 @@ elm.addEventListener("mousedown", function (e) {
 
       if (selected_piece_id == "white_pawn") {
 
-        if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
-            board_pieces[selected_piece_pos] = "";
-            board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
-        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) && selected_piece_pos >  47 && selected_piece_pos < 56) {
-            board_pieces[selected_piece_pos] = "";
-            board_pieces[Number(selected_piece_pos) - 16] = selected_piece_id;
+        // motion
+        if (Number(findpiece) + 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 8, selected_piece_id);
+        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) && selected_piece_pos >  47 && selected_piece_pos < 56  && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 16, selected_piece_id);
+        }
+
+        // capture
+        if (Number(findpiece) + 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
       }
 
       if (selected_piece_id == "white_king") {
 
+        // horizontal, vertical movement
         if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) - 8] = selected_piece_id;
+            movePiece(selected_piece_pos, 8, selected_piece_id);
         } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) + 8] = selected_piece_id;
+            movePiece(selected_piece_pos, 16, selected_piece_id);
         } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) - 1] = selected_piece_id;
+            movePiece(selected_piece_pos, 1, selected_piece_id);
         } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) + 1] = selected_piece_id;
+            movePiece(selected_piece_pos, -1, selected_piece_id);
         }
 
+        // diagonal movement
         else if (Number(findpiece) - 7 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) + 7] = selected_piece_id;
+            movePiece(selected_piece_pos, -7, selected_piece_id);
         } else if (Number(findpiece) - 9 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) + 9] = selected_piece_id;
+            movePiece(selected_piece_pos, -9, selected_piece_id);
         } else if (Number(findpiece) + 7 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) - 7] = selected_piece_id;
+            movePiece(selected_piece_pos, 7, selected_piece_id);
         } else if (Number(findpiece) + 9 == Number(selected_piece_pos)) {
-          board_pieces[selected_piece_pos] = "";
-          board_pieces[Number(selected_piece_pos) - 9] = selected_piece_id;
+            movePiece(selected_piece_pos, 9, selected_piece_id);
+        }
+      }
+
+      if (selected_piece_id == "white_knight") {
+
+        // motion
+        if (Number(findpiece) + 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 17, selected_piece_id);
+        } else if (Number(findpiece) + 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 15, selected_piece_id);
+        } else if (Number(findpiece) + 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 6, selected_piece_id);
+        } else if (Number(findpiece) + 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 10, selected_piece_id);
+        } else if (Number(findpiece) - 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -17, selected_piece_id);
+        } else if (Number(findpiece) - 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -15, selected_piece_id);
+        } else if (Number(findpiece) - 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -6, selected_piece_id);
+        } else if (Number(findpiece) - 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -10, selected_piece_id);
+        }
+
+        // capture
+        if (Number(findpiece) + 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) + 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) + 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) + 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) - 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) - 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) - 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
+        } else if (Number(findpiece) - 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+            capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
       }
 
@@ -453,3 +524,4 @@ elm.addEventListener("mousedown", function (e) {
 
 }); 
 
+changeBoardStyle(style);
