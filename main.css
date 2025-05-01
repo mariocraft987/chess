@@ -1,0 +1,14 @@
+body {
+    background-image: url("/src/img/star.gif");
+    color: white;
+}
+
+#board {
+    border: solid 1px black;
+    image-rendering: crisp-edges;
+}
+
+td, th {
+    border: 1px solid #ffffff;
+    padding: 8px;
+}

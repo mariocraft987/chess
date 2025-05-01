@@ -1,7 +1,11 @@
 // chessboard colors
-let style = "brown";
+let style = "green";
 let board_color1 = "#769656";
 let board_color2 = "#eeeed2";
+
+// chess variables
+this_team = "white";
+opponent_team = "black";
 
 // math stuff
 let square_size = 64;
@@ -206,31 +210,46 @@ function drawPieces() {
     for (n = 0; n < 64; n++) {
       if (board_pieces[n] != "") {
   
+        // vanilla pieces
         if (board_pieces[n] == "white_pawn") {
-          var filepath = "white/pawn";
+          var filepath = "vanilla/white/pawn";
         } else if (board_pieces[n] == "white_king") {
-          var filepath = "white/king";
+          var filepath = "vanilla/white/king";
         } else if (board_pieces[n] == "white_queen") {
-          var filepath = "white/queen";
+          var filepath = "vanilla/white/queen";
         } else if (board_pieces[n] == "white_bishop") {
-          var filepath = "white/bishop";
+          var filepath = "vanilla/white/bishop";
         } else if (board_pieces[n] == "white_knight") {
-          var filepath = "white/knight";
+          var filepath = "vanilla/white/knight";
         } else if (board_pieces[n] == "white_rook") {
-          var filepath = "white/rook";
+          var filepath = "vanilla/white/rook";
         } else if (board_pieces[n] == "black_pawn") {
-          var filepath = "black/pawn";
+          var filepath = "vanilla/black/pawn";
         } else if (board_pieces[n] == "black_king") {
-          var filepath = "black/king";
+          var filepath = "vanilla/black/king";
         } else if (board_pieces[n] == "black_queen") {
-          var filepath = "black/queen";
+          var filepath = "vanilla/black/queen";
         } else if (board_pieces[n] == "black_bishop") {
-          var filepath = "black/bishop";
+          var filepath = "vanilla/black/bishop";
         } else if (board_pieces[n] == "black_knight") {
-          var filepath = "black/knight";
+          var filepath = "vanilla/black/knight";
         } else if (board_pieces[n] == "black_rook") {
-          var filepath = "black/rook";
-        }  else if (board_pieces[n] == "duck") {
+          var filepath = "vanilla/black/rook";
+        } 
+
+        // chaturanga pieces
+        else if (board_pieces[n] == "white_ferz") {
+          var filepath = "chaturanga/white/ferz";
+        } else if (board_pieces[n] == "white_elephant") {
+          var filepath = "chaturanga/white/elephant";
+        } else if (board_pieces[n] == "black_ferz") {
+          var filepath = "chaturanga/black/ferz";
+        } else if (board_pieces[n] == "black_elephant") {
+          var filepath = "chaturanga/black/elephant";
+        } 
+
+        // the powerful all mighty duck
+        else if (board_pieces[n] == "duck") {
           var filepath = "special/duck";
         } 
   
@@ -303,7 +322,7 @@ elm.addEventListener("mousedown", function (e) {
     var findpiece_y = rmousey / square_size
     var findpiece = findpiece_x + (findpiece_y * 8);
 
-    if (board_pieces[findpiece].includes("white")) {
+    if (board_pieces[findpiece].includes(this_team)) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
@@ -319,22 +338,22 @@ elm.addEventListener("mousedown", function (e) {
       console.log("findpiece:"+findpiece)
       console.log("spp:"+selected_piece_pos)
 
-      if (piece == "white_pawn") {
+      if (piece == `${this_team}_pawn`) {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
 
         if (selected_piece_pos >  47 && selected_piece_pos < 56) {
           drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
         }
 
-        if (board_pieces[selected_piece_pos - 9].includes("black")) {
+        if (board_pieces[selected_piece_pos - 9].includes(opponent_team)) {
           drawCircleOutline(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
-        if (board_pieces[selected_piece_pos - 7].includes("black")) {
+        if (board_pieces[selected_piece_pos - 7].includes(opponent_team)) {
           drawCircleOutline(rmousex + (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
       }
 
-      if (piece == "white_king") {
+      if (piece == `${this_team}_king`) {
         drawCircle(rmousex + (square_size * 1), rmousey, tran_black, radius);
         drawCircle(rmousex - (square_size * 1), rmousey, tran_black, radius);
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
@@ -346,7 +365,7 @@ elm.addEventListener("mousedown", function (e) {
         drawCircle(rmousex + (square_size * 1), rmousey - (square_size * 1), tran_black, radius);
       }
 
-      if (piece == "white_queen") {
+      if (piece == `${this_team}_queen`) {
 
         // rook movement
         for (q = 0; q < 8; q++) {
@@ -377,7 +396,7 @@ elm.addEventListener("mousedown", function (e) {
         }
       }
 
-      if (piece == "white_bishop") {
+      if (piece == `${this_team}_bishop`) {
 
         for (q = 0; q < 8; q++) {
           drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
@@ -394,7 +413,7 @@ elm.addEventListener("mousedown", function (e) {
 
       }
 
-      if (piece == "white_knight") {
+      if (piece == `${this_team}_knight`) {
         drawCircle(rmousex - (square_size * 1), rmousey - (square_size * 2), tran_black, radius);
         drawCircle(rmousex + (square_size * 1), rmousey - (square_size * 2), tran_black, radius);
 
@@ -408,7 +427,7 @@ elm.addEventListener("mousedown", function (e) {
         drawCircle(rmousex + (square_size * 2), rmousey + (square_size * 1), tran_black, radius);
       }
 
-      if (piece == "white_rook") {
+      if (piece == `${this_team}_rook`) {
         
         for (q = 0; q < 8; q++) {
           drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey, tran_black, radius);
@@ -428,7 +447,7 @@ elm.addEventListener("mousedown", function (e) {
     } else {
       // movement of pieces
 
-      if (selected_piece_id == "white_pawn") {
+      if (selected_piece_id == `${this_team}_pawn`) {
 
         // motion
         if (Number(findpiece) + 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
@@ -438,14 +457,14 @@ elm.addEventListener("mousedown", function (e) {
         }
 
         // capture
-        if (Number(findpiece) + 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        if (Number(findpiece) + 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
       }
 
-      if (selected_piece_id == "white_king") {
+      if (selected_piece_id == `${this_team}_king`) {
 
         // horizontal, vertical movement
         if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
@@ -470,7 +489,7 @@ elm.addEventListener("mousedown", function (e) {
         }
       }
 
-      if (selected_piece_id == "white_knight") {
+      if (selected_piece_id == `${this_team}_knight`) {
 
         // motion
         if (Number(findpiece) + 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
@@ -492,21 +511,21 @@ elm.addEventListener("mousedown", function (e) {
         }
 
         // capture
-        if (Number(findpiece) + 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        if (Number(findpiece) + 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) + 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) + 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) + 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) + 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) + 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) + 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) - 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) - 17 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) - 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) - 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) - 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) - 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) - 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes("black")) {
+        } else if (Number(findpiece) - 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
       }
@@ -521,6 +540,7 @@ elm.addEventListener("mousedown", function (e) {
     }
 
   }
+
 
 }); 
 
