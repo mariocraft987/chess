@@ -1,11 +1,12 @@
 // chessboard colors
 let style = "green";
-let board_color1 = "#769656";
-let board_color2 = "#eeeed2";
+let board_color1 = "#769656"; // darker color
+let board_color2 = "#eeeed2"; // lighter color
 
 // chess variables
 this_team = "white";
 opponent_team = "black";
+piece_set = "cburnett";
 
 // math stuff
 let square_size = 64;
@@ -64,10 +65,17 @@ function draw(url, x, y, w, h) {
     }
   }
 
+function changePieceSet(id) {
+  piece_set = id;
+
+  drawBoard();
+  drawPieces();
+}
+
 function changeBoardStyle(id) {
   style = id;
 
-  if (style == "classic") {
+  if (style == "green") {
     board_color1 = "#769656";
     board_color2 = "#eeeed2";
   }
@@ -90,6 +98,16 @@ function changeBoardStyle(id) {
   if (style == "tournament") {
     board_color1 = "#316548";
     board_color2 = "#eaeae7";
+  }
+
+  if (style == "blue") {
+    board_color1 = "#4b7399";
+    board_color2 = "#eae9d2";
+  }
+
+  if (style == "bubblegum") {
+    board_color1 = "#fcd8dd";
+    board_color2 = "#ffffff";
   }
 
   drawBoard();
@@ -163,12 +181,50 @@ let board_pieces =
     61: "white_bishop",
     62: "white_knight",
     63: "white_rook",
-  
 };
+
+function findBoardLocation(val) {
+  numbers = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
+  result1 = numbers[(val % 8)];
+  result2 = 9 - (Math.floor(val / 8));
+
+  return result1 + result2;
+}
+
+function writeSidebar(value, piece) {
+    let not = "";
+
+    if (piece.includes("pawn")) {
+      not = ""
+    } else if (piece.includes("king")) {
+      not = "K"
+    } else if (piece.includes("queen")) {
+      not = "Q"
+    } else if (piece.includes("bishop")) {
+      not = "B"
+    } else if (piece.includes("knight")) {
+      not = "N"
+    } else if (piece.includes("rook")) {
+      not = "R"
+    }
+    
+    document.getElementById("notation").innerHTML += `<span style="padding: 20px; word-wrap: break-word;">${not}${value}</span>`;
+}
 
 function drawBoard() {
     let x = 1; // start on square zero
     let y = 0;
+
+    if (style == "walnut") {
+      draw("/src/img/boards/walnut.png", 0, 0, 512, 512);
+    }
+
+    else if (style == "nsdfsmgodrnmngfidsmkfnmesd") {
+      draw("/src/img/boards/walnut.png", 0, 0, 512, 512);
+    }
+    
+    else {
 
     ctx.fillStyle = board_color2;
     ctx.fillRect(0, 0, 512, 512);
@@ -203,6 +259,7 @@ function drawBoard() {
     writeText("g", (square_size * 6) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
     writeText("h", (square_size * 7) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
 
+  }
 
 }
 
@@ -212,40 +269,40 @@ function drawPieces() {
   
         // vanilla pieces
         if (board_pieces[n] == "white_pawn") {
-          var filepath = "vanilla/white/pawn";
+          var filepath = piece_set+"/vanilla/white/pawn";
         } else if (board_pieces[n] == "white_king") {
-          var filepath = "vanilla/white/king";
+          var filepath = piece_set+"/vanilla/white/king";
         } else if (board_pieces[n] == "white_queen") {
-          var filepath = "vanilla/white/queen";
+          var filepath = piece_set+"/vanilla/white/queen";
         } else if (board_pieces[n] == "white_bishop") {
-          var filepath = "vanilla/white/bishop";
+          var filepath = piece_set+"/vanilla/white/bishop";
         } else if (board_pieces[n] == "white_knight") {
-          var filepath = "vanilla/white/knight";
+          var filepath = piece_set+"/vanilla/white/knight";
         } else if (board_pieces[n] == "white_rook") {
-          var filepath = "vanilla/white/rook";
+          var filepath = piece_set+"/vanilla/white/rook";
         } else if (board_pieces[n] == "black_pawn") {
-          var filepath = "vanilla/black/pawn";
+          var filepath = piece_set+"/vanilla/black/pawn";
         } else if (board_pieces[n] == "black_king") {
-          var filepath = "vanilla/black/king";
+          var filepath = piece_set+"/vanilla/black/king";
         } else if (board_pieces[n] == "black_queen") {
-          var filepath = "vanilla/black/queen";
+          var filepath = piece_set+"/vanilla/black/queen";
         } else if (board_pieces[n] == "black_bishop") {
-          var filepath = "vanilla/black/bishop";
+          var filepath = piece_set+"/vanilla/black/bishop";
         } else if (board_pieces[n] == "black_knight") {
-          var filepath = "vanilla/black/knight";
+          var filepath = piece_set+"/vanilla/black/knight";
         } else if (board_pieces[n] == "black_rook") {
-          var filepath = "vanilla/black/rook";
+          var filepath = piece_set+"/vanilla/black/rook";
         } 
 
         // chaturanga pieces
         else if (board_pieces[n] == "white_ferz") {
-          var filepath = "chaturanga/white/ferz";
+          var filepath = "cburnett/chaturanga/white/ferz";
         } else if (board_pieces[n] == "white_elephant") {
-          var filepath = "chaturanga/white/elephant";
+          var filepath = "cburnett/chaturanga/white/elephant";
         } else if (board_pieces[n] == "black_ferz") {
-          var filepath = "chaturanga/black/ferz";
+          var filepath = "cburnett/chaturanga/black/ferz";
         } else if (board_pieces[n] == "black_elephant") {
-          var filepath = "chaturanga/black/elephant";
+          var filepath = "cburnett/chaturanga/black/elephant";
         } 
 
         // the powerful all mighty duck
@@ -262,12 +319,16 @@ function movePiece(last_position, movement, piece) {
     board_pieces[last_position] = "";
     board_pieces[Number(selected_piece_pos) - movement] = piece;
 
+    writeSidebar(findBoardLocation(last_position), piece);
+
     playSound("move");
 }
 
 function capturePiece(capture, last_position, piece) {
   board_pieces[last_position] = "";
   board_pieces[capture] = piece;
+
+  writeSidebar("x" + findBoardLocation(last_position), piece);
 
   playSound("capture");
 }
@@ -326,7 +387,7 @@ elm.addEventListener("mousedown", function (e) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
-      var tran_black = "rgb(0, 0, 0, 0.45)";
+      var tran_black = "rgb(0, 0, 0, 0.55)";
       var radius = 11
       var radius_plus = 25
       var line_width = 5.3
@@ -389,7 +450,7 @@ elm.addEventListener("mousedown", function (e) {
           drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
           drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
@@ -405,7 +466,7 @@ elm.addEventListener("mousedown", function (e) {
           drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
-          drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey - (square_size * 8) + (square_size * q), tran_black, radius);
+          drawCircle(rmousex + (square_size * 8) - (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
         }
         for (q = 0; q < 8; q++) {
           drawCircle(rmousex - (square_size * 8) + (square_size * q), rmousey + (square_size * 8) - (square_size * q), tran_black, radius);
@@ -462,6 +523,11 @@ elm.addEventListener("mousedown", function (e) {
         } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
+
+        if (Number(selected_piece_pos) < 9) {
+            convertPiece(selected_piece_pos, `${this_team}_queen`)
+        }
+
       }
 
       if (selected_piece_id == `${this_team}_king`) {
@@ -470,7 +536,7 @@ elm.addEventListener("mousedown", function (e) {
         if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
             movePiece(selected_piece_pos, 8, selected_piece_id);
         } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
-            movePiece(selected_piece_pos, 16, selected_piece_id);
+            movePiece(selected_piece_pos, -8, selected_piece_id);
         } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
             movePiece(selected_piece_pos, 1, selected_piece_id);
         } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
@@ -487,6 +553,104 @@ elm.addEventListener("mousedown", function (e) {
         } else if (Number(findpiece) + 9 == Number(selected_piece_pos)) {
             movePiece(selected_piece_pos, 9, selected_piece_id);
         }
+      }
+
+      
+      if (selected_piece_id == `${this_team}_queen`) {
+
+        // horizontal, vertical movement
+        if (Number(findpiece) + 8 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, 8, selected_piece_id);
+        } else if (Number(findpiece) - 8 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, -8, selected_piece_id);
+        } else if (Number(findpiece) + 1 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, 1, selected_piece_id);
+        } else if (Number(findpiece) - 1 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, -1, selected_piece_id);
+        }
+
+        // diagonal movement
+        else if (Number(findpiece) - 7 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, -7, selected_piece_id);
+        } else if (Number(findpiece) - 9 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, -9, selected_piece_id);
+        } else if (Number(findpiece) + 7 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, 7, selected_piece_id);
+        } else if (Number(findpiece) + 9 == Number(selected_piece_pos)) {
+            movePiece(selected_piece_pos, 9, selected_piece_id);
+        }
+      }
+
+      if (selected_piece_id == `${this_team}_rook`) {
+
+        // left motion
+        if (Number(findpiece) + 1 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 1,  selected_piece_id);
+        } else if (Number(findpiece) + 2 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 2,  selected_piece_id);
+        } else if (Number(findpiece) + 3 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 3,  selected_piece_id);
+        } else if (Number(findpiece) + 4 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 4,  selected_piece_id);
+        } else if (Number(findpiece) + 5 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 5,  selected_piece_id);
+        } else if (Number(findpiece) + 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 6,  selected_piece_id);
+        } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 7,  selected_piece_id);
+        }
+
+        // right motion
+        if (Number(findpiece) - 1 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -1,  selected_piece_id);
+        } else if (Number(findpiece) - 2 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -2,  selected_piece_id);
+        } else if (Number(findpiece) - 3 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -3,  selected_piece_id);
+        } else if (Number(findpiece) - 4 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -4,  selected_piece_id);
+        } else if (Number(findpiece) - 5 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -5,  selected_piece_id);
+        } else if (Number(findpiece) - 6 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -6,  selected_piece_id);
+        } else if (Number(findpiece) - 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -7,  selected_piece_id);
+        }
+
+        // up motion
+        else if (Number(findpiece) - 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -8,  selected_piece_id);
+        } else if (Number(findpiece) - 16 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -16,  selected_piece_id);
+        } else if (Number(findpiece) - 24 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -24,  selected_piece_id);
+        } else if (Number(findpiece) - 32 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -32,  selected_piece_id);
+        } else if (Number(findpiece) - 40 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -40,  selected_piece_id);
+        } else if (Number(findpiece) - 48 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -48,  selected_piece_id);
+        } else if (Number(findpiece) - 56 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -56,  selected_piece_id);
+        }
+
+        // down motion
+        else if (Number(findpiece) + 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 8,  selected_piece_id);
+        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 16,  selected_piece_id);
+        } else if (Number(findpiece) + 24 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 24,  selected_piece_id);
+        } else if (Number(findpiece) + 32 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 32,  selected_piece_id);
+        } else if (Number(findpiece) + 40 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 40,  selected_piece_id);
+        } else if (Number(findpiece) + 48 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 48,  selected_piece_id);
+        } else if (Number(findpiece) + 56 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 56,  selected_piece_id);
+        }
+
       }
 
       if (selected_piece_id == `${this_team}_knight`) {
@@ -528,6 +692,70 @@ elm.addEventListener("mousedown", function (e) {
         } else if (Number(findpiece) - 10 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
+      }
+
+      if (selected_piece_id == `${this_team}_bishop`) {
+
+        // up left motion
+        if (Number(findpiece) + 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 9,  selected_piece_id);
+        } else if (Number(findpiece) + 18 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 18,  selected_piece_id);
+        } else if (Number(findpiece) + 27 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 27,  selected_piece_id);
+        } else if (Number(findpiece) + 36 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 36,  selected_piece_id);
+        } else if (Number(findpiece) + 45 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 45,  selected_piece_id);
+        } else if (Number(findpiece) + 54 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 54,  selected_piece_id);
+        } 
+
+        // up right motion
+        else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 7,  selected_piece_id);
+        } else if (Number(findpiece) + 14 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 14,  selected_piece_id);
+        } else if (Number(findpiece) + 21 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 21,  selected_piece_id);
+        } else if (Number(findpiece) + 28 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 28,  selected_piece_id);
+        } else if (Number(findpiece) + 35 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 35,  selected_piece_id);
+        } else if (Number(findpiece) + 42 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 42,  selected_piece_id);
+        }
+
+        // down left motion
+        else if (Number(findpiece) - 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -9,  selected_piece_id);
+        } else if (Number(findpiece) - 18 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -18,  selected_piece_id);
+        } else if (Number(findpiece) - 27 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -27,  selected_piece_id);
+        } else if (Number(findpiece) - 36 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -36,  selected_piece_id);
+        } else if (Number(findpiece) - 45 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -45,  selected_piece_id);
+        } else if (Number(findpiece) - 54 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -54,  selected_piece_id);
+        } 
+
+        // down right motion
+        else if (Number(findpiece) - 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -7,  selected_piece_id);
+        } else if (Number(findpiece) - 14 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -14,  selected_piece_id);
+        } else if (Number(findpiece) - 21 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -21,  selected_piece_id);
+        } else if (Number(findpiece) - 28 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -28,  selected_piece_id);
+        } else if (Number(findpiece) - 35 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -35,  selected_piece_id);
+        } else if (Number(findpiece) - 42 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -42,  selected_piece_id);
+        }
+
       }
 
       selected_piece_id = "";

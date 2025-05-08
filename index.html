@@ -9,16 +9,32 @@
 <body>
     <h1>Chess</h1>
     <p>An open-source HTML/JS Chess project</p>
-    <div>
-        <canvas id="board" style="display:flex;" width="512" height="512"></canvas>
-        <!--
-        <div style="display:flex;">
-            <button><img src="/src/pieces/white/king.svg" width="40"><br/>Vanilla Chess</button><br/>
-            <button><img src="/src/pieces/black/rook.svg" width="40"><br/>Chess 960</button><br/>
-            <button><img src="/src/pieces/special/duck.svg" width="40"><br/>Duck Chess</button><br/>
+    <div style="display:flex">
+        <canvas id="board" width="512" height="512"></canvas>
+        <div class="sidebar" id="sidebar">
+            <p><b>Vanilla Chess</b></p>
+            Board:
+            <select onchange="changeBoardStyle(this.value)">
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="red">Red</option>
+                <option value="tournament">Tournament</option>
+                <option value="blue">Blue</option>
+                <option value="bubblegum">Bubblegum</option>
+                <option value="walnut">Walnut</option>
+            </select>
+            Piece Set:
+            <select onchange="changePieceSet(this.value)">
+                <option value="cburnett">Cburnett</option>
+                <option value="alpha">Alpha</option>
+            </select>
+            <br/>
+            <span id="notation"></span>
         </div>
-        -->
     </div>
+
+    <div style="display:block;">
     <br/>
     <p>Checklist</p>
     <ul>
@@ -31,6 +47,7 @@
     </ul>
     <p>ChessGG is not affiliated with Chess.com or Lichess.org in anyway whatsoever.</p>
     <p>Webmaster E-Mail: <a href="mailto:mariocraft987dev+chessgg@gmail.com">mariocraft987dev+chessgg@gmail.com</a></p>
+    </div>
 </body>
 <script src="/src/scripts/main.js"></script>
 </html>

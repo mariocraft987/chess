@@ -1,5 +1,5 @@
 body {
-    background-image: url("/src/img/star.gif");
+    background-image: url("/src/img/bg/star.gif");
     color: white;
 }
 
@@ -10,5 +10,15 @@ body {
 
 td, th {
     border: 1px solid #ffffff;
+    width: 120px;
     padding: 8px;
+}
+
+.sidebar {
+    background-color: rgba(45, 45, 46, 0.88);
+    color: rgb(255, 255, 255);
+    width: 140px;
+    text-align: center;
+    overflow: scroll;
+    height: 512px;
 }
