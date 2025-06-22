@@ -3,12 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChessGG - Variants</title>
-    <link rel="stylesheet" href="main.css">
+    <title>Try a variant!</title>
+    <link rel="stylesheet" href="/src/main.css">
 </head>
 <body>
     <h1>Chess Variants</h1>
+    <div style="display:flex">
+        <canvas id="board" width="512" height="512"></canvas>
+        <div class="sidebar" id="sidebar">
+            <p><b><span id="variant-name">Vanilla Chess</span></b></p>
+            Board:
+            <select onchange="changeBoardStyle(this.value)" id="boardStyle">
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="red">Red</option>
+                <option value="tournament">Tournament</option>
+            </select>
+            <br/>
+            Piece Set:
+            <select onchange="changePieceSet(this.value)" id="pieceSet">
+                <option value="cburnett">Cburnett</option>
+            </select>
+            <br/>
+            <br/>
+            <span id="notation"></span>
+            <span id="other-gui"></span>
+        </div>
+    </div>
+
+    <div style="display:block;" id="below-gui">
+
+    </div>
+
+    <br/>
+    <hr/>
+
+    <h1>Variant Rules</h1>
     <p>Chess variants are variations of Chess with different rules, or pieces.</p>
+    <p>Note: some of these fairy piece images are from a site called <a href="https://greenchess.net">Greenchess.net</a>, while others are from <a href="https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces">a Wikimedia page</a>. Greenchess License: <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons</a>.</p>
 
     <h2>Chess960/Fischer Random</h2>
     <p>Chess960 aka Fischer Random Chess is a variant that randomizes the back rank pieces on both sides, created by Bobby Fischer.</p>
@@ -36,12 +70,15 @@
         <tr>
             <td>Duck</td>
             <td><img src="/src/pieces/special/duck.svg" width="60"></td>
-            <td>Can be used by both white and black only after they move one of their pieces. Can be placed in every square that's not occupied. Acts like a brick, no piece can move through it.</td>
+            <td>Can be used by both white and black only after they move one of their pieces. <br/>Can be placed in every square that's not occupied. Acts like a brick, no piece can move through it.</td>
         </tr>
     </table>
 
     <h2>Chaturanga</h2>
     <p>Chaturanga is one of the first Chess games before Orthodox Chess (normal chess). Chaturanga works like normal chess, but with two new pieces, the Afil repacing the Bishop, and the Ferz replacing the Queen.</p>
+
+    <img src="/src/img/assets/game_pics/chaturanga.png" width="350" alt="Chatuanga, featuring a orange and brown checkerboard board.">
+    <br/>
 
     <table>
         <tr>
@@ -51,7 +88,7 @@
         </tr>
         <tr>
             <td>Raja</td>
-            <td><img src="/src/pieces/vanilla/white/king.svg" width="60"></td>
+            <td><img src="/src/pieces/cburnett/vanilla/white/king.svg" width="60"></td>
             <td>A renamed King piece.</td>
         </tr>
     </table>
@@ -63,7 +100,7 @@
         </tr>
         <tr>
             <td>Mantri, Ferz</td>
-            <td><img src="/src/pieces/chaturanga/white/ferz.svg" width="60"></td>
+            <td><img src="/src/pieces/cburnett/chaturanga/white/ferz.svg" width="60"></td>
             <td>Replaces the role of the Queen, moves and captures one square diagnally.</td>
         </tr>
     </table>
@@ -75,7 +112,7 @@
         </tr>
         <tr>
             <td>Ratha, Chariot</td>
-            <td><img src="/src/pieces/vanilla/white/rook.svg" width="60"></td>
+            <td><img src="/src/pieces/cburnett/vanilla/white/rook.svg" width="60"></td>
             <td>A renamed Rook piece.</td>
         </tr>
     </table>
@@ -87,7 +124,7 @@
         </tr>
         <tr>
             <td>Gaja, Afil, Elephant</td>
-            <td><img src="/src/pieces/chaturanga/white/elephant.svg" width="60"></td>
+            <td><img src="/src/pieces/cburnett/chaturanga/white/elephant.svg" width="60"></td>
             <td>Replaces the role of the Bishop, jumps 2 squares diagonally.</td>
         </tr>
     </table>
@@ -99,7 +136,7 @@
         </tr>
         <tr>
             <td>Asva</td>
-            <td><img src="/src/pieces/vanilla/white/knight.svg" width="60"></td>
+            <td><img src="/src/pieces/cburnett/vanilla/white/knight.svg" width="60"></td>
             <td>A renamed Knight piece.</td>
         </tr>
     </table>
@@ -110,11 +147,16 @@
           <th>Mechanic</th>
         </tr>
         <tr>
-            <td>Padati</td>
-            <td><img src="/src/pieces/vanilla/white/pawn.svg" width="60"></td>
+            <td>Padati, Infantry</td>
+            <td><img src="/src/pieces/cburnett/vanilla/white/pawn.svg" width="60"></td>
             <td>A renamed Pawn piece.</td>
         </tr>
     </table>
-</body>
-</html>
 
+    <h2>4 player Chess</h2>
+
+    <img src="/src/img/assets/game_pics/4player.png" width="350" alt="A 14x14 board with teams of opposite sides with the colors white, black, red, blue.">
+    <br/>
+</body>
+<script src="/variants/4player.js"></script>
+</html>

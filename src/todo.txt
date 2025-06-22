@@ -1,0 +1,4 @@
+fix elephant svg sprite
+limited movement, dont let long-ranged pieces move through each other
+add turns
+make it online??????

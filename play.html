@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Chess variants at ChessGG!">
+    <meta name="author" content="AtomicBolts">
+    <title>ChessGG</title>
+    <link rel="stylesheet" href="/src/main.css">
+</head>
+<body>
+    <h1>Chess</h1>
+    <span id="upper-gui">
+
+    </span>
+    <div style="display:flex">
+        <canvas id="board" width="512" height="512"></canvas>
+        <div class="sidebar" id="sidebar">
+            <p>
+                <b>Vanilla Chess</b>
+                <br/>
+                <span>You <b>V.S.</b> Someone</span>
+            </p>
+            Board:
+            <select onchange="changeBoardStyle(this.value)" id="boardStyle">
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="red">Red</option>
+                <option value="tournament">Tournament</option>
+                <option value="bubblegum">Bubblegum</option>
+                <option value="martin">Martin</option>
+                <option value="checkers">Checkers</option>
+                <option value="orange">Orange</option>
+                <option value="walnut">Walnut</option>
+                <option value="darkwood">Dark Wood</option>
+                <option value="dash">Dash</option>
+                <option value="noboard">No board</option>
+            </select>
+            <br/>
+            Piece Set:
+            <select onchange="changePieceSet(this.value)" id="pieceSet">
+                <option value="cburnett">Cburnett</option>
+            </select>
+            <br/>
+            <span id="opening">No piece moved</span>
+            <br/>
+            <table id="notation"></table>
+        </div>
+    </div>
+
+    <div style="display:block;">
+    <br/>
+    <p>Checklist</p>
+    <ul>
+        <li><s>Chess board</s>✓</li>
+        <li><s>Pieces</s>✓</li>
+        <li><s>Highlighting squares</s>✓</li>
+        <li>Moving pieces</li>
+        <li>Bots/Online</li>
+        <li>Variants</li>
+    </ul>
+    </div>
+</body>
+<script src="/src/scripts/main.js"></script>
+<script src="/src/scripts/site.js"></script>
+</html>

@@ -1,21 +1,18 @@
 // chessboard colors
 let style = "green";
-let board_color1 = "#769656"; // darker color
-let board_color2 = "#eeeed2"; // lighter color
+let board_color1 = "#4b3326"; // darker color
+let board_color2 = "#c07932"; // lighter color
 
 // chess variables
+let variant_name = "Chaturanga";
 this_team = "white";
 opponent_team = "black";
 piece_set = "cburnett";
-turn = "white";
-
-algebraic_notation = [];
 
 // math stuff
 let square_size = 64;
 let selected_piece_id = "";
 let selected_piece_pos = "";
-let castle = true;
 
 // sfx variables
 let move_sfx = new Audio("/src/sfx/move-self.mp3");
@@ -61,6 +58,18 @@ function draw(url, x, y, w, h) {
   
   }
 
+  function addX(square_x, square_y) {
+    ctx.lineWidth = 2.5;
+
+    ctx.beginPath();
+    ctx.moveTo((square_x * square_size) + (square_size / 4.4), (square_y * square_size) + (square_size / 4.4));
+    ctx.lineTo((square_x * square_size) + (square_size / 1.4), (square_y * square_size) + (square_size / 1.4));
+
+    ctx.moveTo(((square_x + 0.5) * square_size) + (square_size / 4.4), ((square_y - 0.5) * square_size) - (square_size / 1.4) + (square_size * 1.45));
+    ctx.lineTo(((square_x - 0.5) * square_size ) + (square_size / 1.4), ((square_y - 0.5) * square_size) - (square_size / 4.4) + (square_size * 1.45));
+    ctx.stroke();
+  }
+
   function playSound(sfx) {
     if (sfx == "move") {
       move_sfx.play();
@@ -104,31 +113,6 @@ function changeBoardStyle(id) {
     board_color2 = "#eaeae7";
   }
 
-  if (style == "blue") {
-    board_color1 = "#4b7399";
-    board_color2 = "#eae9d2";
-  }
-
-  if (style == "bubblegum") {
-    board_color1 = "#fcd8dd";
-    board_color2 = "#ffffff";
-  }
-
-  if (style == "martin") {
-    board_color1 = "#68a27c";
-    board_color2 = "#f1f0f0";
-  }
-
-  if (style == "checkers") {
-    board_color1 = "#303030";
-    board_color2 = "#c74c51";
-  }
-
-  if (style == "orange") {
-    board_color1 = "#d18815";
-    board_color2 = "#fae4ae";
-  }
-
   drawBoard();
   drawPieces();
 }
@@ -138,10 +122,10 @@ let board_pieces =
   
     0: "black_rook",
     1: "black_knight",
-    2: "black_bishop",
-    3: "black_queen",
-    4: "black_king",
-    5: "black_bishop",
+    2: "black_elephant",
+    3: "black_king",
+    4: "black_ferz",
+    5: "black_elephant",
     6: "black_knight",
     7: "black_rook",
     8: "black_pawn",
@@ -194,10 +178,10 @@ let board_pieces =
     55: "white_pawn",
     56: "white_rook",
     57: "white_knight",
-    58: "white_bishop",
-    59: "white_queen",
+    58: "white_elephant",
+    59: "white_ferz",
     60: "white_king",
-    61: "white_bishop",
+    61: "white_elephant",
     62: "white_knight",
     63: "white_rook",
 };
@@ -206,12 +190,12 @@ function findBoardLocation(val) {
   numbers = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
   result1 = numbers[(val % 8)];
-  result2 = 10 - (Math.floor(val / 8));
+  result2 = 9 - (Math.floor(val / 8));
 
-  return result1 + (Number(result2));
+  return result1 + result2;
 }
 
-function getNotation(value, piece) {
+function writeSidebar(value, piece) {
     let not = "";
 
     if (piece.includes("pawn")) {
@@ -228,30 +212,7 @@ function getNotation(value, piece) {
       not = "R"
     }
     
-    return (not + findBoardLocation(value));
-}
-
-function writeSidebar(value) {
-    document.getElementById("notation").innerHTML += `<tr>${value}</tr>`;
-}
-
-function calculateOpening(not) {
-
-  if (JSON.stringify(not) == JSON.stringify(["e4"])) {
-    return "King's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["d4"])) {
-    return "Queen's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["e4", "ke2"])) {
-    return "Bongcloud Opening";
-  }
-
-
-  else {
-    return "";
-  }
-  
+    document.getElementById("notation").innerHTML += `<span style="padding: 20px; word-wrap: break-word;">${not}${value}</span>`;
 }
 
 function drawBoard() {
@@ -262,12 +223,8 @@ function drawBoard() {
       draw("/src/img/boards/walnut.png", 0, 0, 512, 512);
     }
 
-    else if (style == "darkwood") {
-      draw("/src/img/boards/darkwood.png", 0, 0, 512, 512);
-    }
-
-    else if (style == "dash") {
-      draw("/src/img/boards/dash.png", 0, 0, 512, 512);
+    else if (style == "nsdfsmgodrnmngfidsmkfnmesd") {
+      draw("/src/img/boards/walnut.png", 0, 0, 512, 512);
     }
     
     else {
@@ -286,6 +243,35 @@ function drawBoard() {
           y++;
       }
     }
+
+    // top
+    addX(0, 0);
+
+    addX(3, 0);
+    addX(4, 0);
+
+    addX(7, 0);
+
+    // center
+    addX(0, 3);
+    addX(0, 4);
+
+    addX(3, 3);
+    addX(3, 4);
+    addX(4, 3);
+    addX(4, 4);
+
+    addX(7, 3);
+    addX(7, 4);
+
+    // bottom
+
+    addX(0, 7);
+
+    addX(3, 7);
+    addX(4, 7);
+
+    addX(7, 7);
 
     writeText("8", (square_size * 0) + 2, (square_size * 0) + 14, "15px sans-serif", board_color1);
     writeText("7", (square_size * 0) + 2, (square_size * 1) + 14, "15px sans-serif", board_color2);
@@ -365,12 +351,7 @@ function movePiece(last_position, movement, piece) {
     board_pieces[last_position] = "";
     board_pieces[Number(selected_piece_pos) - movement] = piece;
 
-    notation = getNotation(last_position, piece)
-
-    writeSidebar(notation);
-    algebraic_notation.push(notation)
-
-    document.getElementById("opening").innerHTML = calculateOpening(algebraic_notation)
+    writeSidebar(findBoardLocation(last_position), piece);
 
     playSound("move");
 }
@@ -414,15 +395,8 @@ elm.addEventListener("mousedown", function (e) {
 
   // right click
   if (e.button == 2) {
-    if (e.ctrlKey) {
-      ctx.fillStyle = "rgb(252, 202, 3, 0.5)";
-    } else if (e.altKey) {
-      ctx.fillStyle = "rgb(3, 107, 252, 0.5)";
-    } else if (e.shiftKey) {
-      ctx.fillStyle = "rgb(71, 237, 0, 0.5)";
-    } else {
-      ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
-    }
+    ctx.fillStyle = "rgb(255, 0, 0, 0.5)";
+
     ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
   }
 
@@ -441,8 +415,7 @@ elm.addEventListener("mousedown", function (e) {
     var findpiece_y = rmousey / square_size
     var findpiece = findpiece_x + (findpiece_y * 8);
 
-    if (board_pieces[findpiece].includes(this_team)/* && turn == "white" */) {
-
+    if (board_pieces[findpiece].includes(this_team)) {
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
@@ -460,10 +433,6 @@ elm.addEventListener("mousedown", function (e) {
 
       if (piece == `${this_team}_pawn`) {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
-
-        if (selected_piece_pos >  47 && selected_piece_pos < 56) {
-          drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
-        }
 
         if (board_pieces[selected_piece_pos - 9].includes(opponent_team)) {
           drawCircleOutline(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
@@ -564,6 +533,13 @@ elm.addEventListener("mousedown", function (e) {
 
       }
 
+      if (piece == `${this_team}_elephant`) {
+        drawCircle(rmousex - (square_size * 2), rmousey - (square_size * 2), tran_black, radius);
+        drawCircle(rmousex - (square_size * 2), rmousey + (square_size * 2), tran_black, radius);
+        drawCircle(rmousex + (square_size * 2), rmousey - (square_size * 2), tran_black, radius);
+        drawCircle(rmousex + (square_size * 2), rmousey + (square_size * 2), tran_black, radius);
+      }
+
     } else {
       // movement of pieces
 
@@ -572,8 +548,6 @@ elm.addEventListener("mousedown", function (e) {
         // motion
         if (Number(findpiece) + 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
             movePiece(selected_piece_pos, 8, selected_piece_id);
-        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) && selected_piece_pos >  47 && selected_piece_pos < 56  && board_pieces[Number(findpiece)] == "") {
-            movePiece(selected_piece_pos, 16, selected_piece_id);
         }
 
         // capture
@@ -756,23 +730,6 @@ elm.addEventListener("mousedown", function (e) {
       if (selected_piece_id == `${this_team}_rook`) {
 
         // left motion
-
-        /*
-        fucking failed prototype of accurate limited rook movement
-
-        if (Number(findpiece) + 1 <= Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
-            if (Number(findpiece) + 2 <= Number(selected_piece_pos) && board_pieces[Number(findpiece + 1)] == "") {
-                    if (Number(findpiece) + 3 <= Number(selected_piece_pos) && board_pieces[Number(findpiece + 2)] == "") {
-                        movePiece(selected_piece_pos, 3,  selected_piece_id);
-                    } else {
-                        movePiece(selected_piece_pos, 2,  selected_piece_id);
-                    }
-            } else {
-                movePiece(selected_piece_pos, 1,  selected_piece_id);
-            }
-        }
-        */
-
         if (Number(findpiece) + 1 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
             movePiece(selected_piece_pos, 1,  selected_piece_id);
         } else if (Number(findpiece) + 2 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
@@ -946,11 +903,23 @@ elm.addEventListener("mousedown", function (e) {
         }
 
       }
+        if (selected_piece_id == `${this_team}_elephant`) {
+
+        // motion
+        if (Number(findpiece) + 18 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 18, selected_piece_id);
+        } else if (Number(findpiece) + 14 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 14, selected_piece_id);
+        } else if (Number(findpiece) - 18 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -18, selected_piece_id);
+        } else if (Number(findpiece) - 14 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, -14, selected_piece_id);
+        }
+
+      }
 
       selected_piece_id = "";
       selected_piece_pos = "";
-
-      turn = "black";
 
       setTimeout(function (){
         drawBoard();
@@ -963,5 +932,12 @@ elm.addEventListener("mousedown", function (e) {
 
 }); 
 
-document.getElementById("boardStyle").value = style;
-changeBoardStyle(style);
+// disable board styl changer
+var option = document.createElement("option");
+option.text = "Chaturanga";
+option.value = "chaturanga";
+document.getElementById("boardStyle").add(option);
+
+document.getElementById("boardStyle").value = "chaturanga";
+document.getElementById("boardStyle").disabled = true;
+// changeBoardStyle(style);

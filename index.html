@@ -3,40 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Chess variants at ChessGG!">
+    <meta name="author" content="AtomicBolts">
     <title>ChessGG</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/src/main.css">
 </head>
 <body>
-    <h1>Chess</h1>
+    <h1 style="font-size: 120t;">Chess GG</h1>
     <p>An open-source HTML/JS Chess project</p>
-    <div style="display:flex">
-        <canvas id="board" width="512" height="512"></canvas>
-        <div class="sidebar" id="sidebar">
-            <p><b>Vanilla Chess</b></p>
-            Board:
-            <select onchange="changeBoardStyle(this.value)">
-                <option value="green">Green</option>
-                <option value="purple">Purple</option>
-                <option value="brown">Brown</option>
-                <option value="red">Red</option>
-                <option value="tournament">Tournament</option>
-                <option value="blue">Blue</option>
-                <option value="bubblegum">Bubblegum</option>
-                <option value="walnut">Walnut</option>
-            </select>
-            Piece Set:
-            <select onchange="changePieceSet(this.value)">
-                <option value="cburnett">Cburnett</option>
-                <option value="alpha">Alpha</option>
-            </select>
-            <br/>
-            <span id="notation"></span>
-        </div>
-    </div>
+    <span class="variant-info">
+        <a href="/play.html"><img src="/src/img/assets/game_pics/vanilla_chess.png" width="240" title="Vanilla Chess"></a>
+        <a href="/play.html?game=online"><h3>Play Online<img src="/src/img/assets/icons/earth.gif" alt="Computer and telephone"></h3></a>
+        <a href="/play.html?game=computer"><h3>Play Computer<img src="/src/img/assets/icons/terminal.gif" alt="The world wide web"></h3></a>
+        <a href="/play.html?game=try"><h3>Try out the rules<img src="/src/img/assets/icons/book.gif" alt="Reading through a book"></h3></a>
+    </span>
 
     <div style="display:block;">
     <br/>
-    <p>Checklist</p>
+    <p>Checklist:</p>
     <ul>
         <li><s>Chess board</s>✓</li>
         <li><s>Pieces</s>✓</li>
@@ -45,9 +29,8 @@
         <li>Bots/Online</li>
         <li>Variants</li>
     </ul>
-    <p>ChessGG is not affiliated with Chess.com or Lichess.org in anyway whatsoever.</p>
-    <p>Webmaster E-Mail: <a href="mailto:mariocraft987dev+chessgg@gmail.com">mariocraft987dev+chessgg@gmail.com</a></p>
+    <img src="/src/img/assets/chessgg.png" width="88" height="31" alt="logans chess gg" border="0">
+    <marquee scrollamount="13">ChessGG is not affiliated with Chess.com or Lichess.org in anyway whatsoever. Webmaster E-Mail: <a href="mailto:mariocraft987dev+chessgg@gmail.com">mariocraft987dev+chessgg@gmail.com</a></marquee>
     </div>
 </body>
-<script src="/src/scripts/main.js"></script>
 </html>

@@ -1,21 +1,22 @@
 // chessboard colors
 let style = "green";
-let board_color1 = "#769656"; // darker color
-let board_color2 = "#eeeed2"; // lighter color
+let board_color1 = "#adadad"; // darker color
+let board_color2 = "#dadada"; // lighter color
 
 // chess variables
-this_team = "white";
+this_team = "1";
 opponent_team = "black";
-piece_set = "cburnett";
-turn = "white";
+piece_set = "wbrb";
 
-algebraic_notation = [];
+let team_path_1 = "vanilla/white"
+let team_path_2 = "vanilla/black"
+let team_path_3 = "4p/red"
+let team_path_4 = "4p/blue"
 
 // math stuff
-let square_size = 64;
+let square_size = 36.7;
 let selected_piece_id = "";
 let selected_piece_pos = "";
-let castle = true;
 
 // sfx variables
 let move_sfx = new Audio("/src/sfx/move-self.mp3");
@@ -84,6 +85,11 @@ function changeBoardStyle(id) {
     board_color2 = "#eeeed2";
   }
 
+  if (style == "blue") {
+    board_color1 = "#4b7399";
+    board_color2 = "#eae9d2";
+  }
+
   if (style == "purple") {
     board_color1 = "#8476ba";
     board_color2 = "#f0f1f0";
@@ -104,31 +110,6 @@ function changeBoardStyle(id) {
     board_color2 = "#eaeae7";
   }
 
-  if (style == "blue") {
-    board_color1 = "#4b7399";
-    board_color2 = "#eae9d2";
-  }
-
-  if (style == "bubblegum") {
-    board_color1 = "#fcd8dd";
-    board_color2 = "#ffffff";
-  }
-
-  if (style == "martin") {
-    board_color1 = "#68a27c";
-    board_color2 = "#f1f0f0";
-  }
-
-  if (style == "checkers") {
-    board_color1 = "#303030";
-    board_color2 = "#c74c51";
-  }
-
-  if (style == "orange") {
-    board_color1 = "#d18815";
-    board_color2 = "#fae4ae";
-  }
-
   drawBoard();
   drawPieces();
 }
@@ -136,31 +117,31 @@ function changeBoardStyle(id) {
 let board_pieces = 
 {
   
-    0: "black_rook",
-    1: "black_knight",
-    2: "black_bishop",
-    3: "black_queen",
-    4: "black_king",
-    5: "black_bishop",
-    6: "black_knight",
-    7: "black_rook",
-    8: "black_pawn",
-    9: "black_pawn",
-    10: "black_pawn",
-    11: "black_pawn",
-    12: "black_pawn",
-    13: "black_pawn",
-    14: "black_pawn",
-    15: "black_pawn",
+    0: "",
+    1: "",
+    2: "",
+    3: "4_rook",
+    4: "4_knight",
+    5: "4_bishop",
+    6: "4_queen",
+    7: "4_king",
+    8: "4_bishop",
+    9: "4_knight",
+    10: "4_rook",
+    11: "",
+    12: "",
+    13: "",
+    14: "",
+    15: "",
     16: "",
-    17: "",
-    18: "",
-    19: "",
-    20: "",
-    21: "",
-    22: "",
-    23: "",
-    24: "",
+    17: "4_pawn",
+    18: "4_pawn",
+    19: "4_pawn",
+    20: "4_pawn",
+    21: "4_pawn",
+    22: "4_pawn",
+    23: "4_pawn",
+    24: "4_pawn",
     25: "",
     26: "",
     27: "",
@@ -178,40 +159,174 @@ let board_pieces =
     39: "",
     40: "",
     41: "",
-    42: "",
-    43: "",
+    42: "3_rook",
+    43: "3_pawn",
     44: "",
     45: "",
     46: "",
     47: "",
-    48: "white_pawn",
-    49: "white_pawn",
-    50: "white_pawn",
-    51: "white_pawn",
-    52: "white_pawn",
-    53: "white_pawn",
-    54: "white_pawn",
-    55: "white_pawn",
-    56: "white_rook",
-    57: "white_knight",
-    58: "white_bishop",
-    59: "white_queen",
-    60: "white_king",
-    61: "white_bishop",
-    62: "white_knight",
-    63: "white_rook",
+    48: "",
+    49: "",
+    50: "",
+    51: "",
+    52: "",
+    53: "",
+    54: "2_pawn",
+    55: "2_rook",
+    56: "3_knight",
+    57: "3_pawn",
+    58: "",
+    59: "",
+    60: "",
+    61: "",
+    62: "",
+    63: "",
+    64: "",
+    65: "",
+    66: "",
+    67: "",
+    68: "2_pawn",
+    69: "2_knight",
+    70: "3_bishop",
+    71: "3_pawn",
+    72: "",
+    73: "",
+    74: "",
+    75: "",
+    76: "",
+    77: "",
+    78: "",
+    79: "",
+    80: "",
+    81: "",
+    82: "2_pawn",
+    83: "2_bishop",
+    84: "3_queen",
+    85: "3_pawn",
+    86: "",
+    87: "",
+    88: "",
+    89: "",
+    90: "",
+    91: "",
+    92: "",
+    93: "",
+    94: "",
+    95: "",
+    96: "2_pawn",
+    97: "2_king",
+    98: "3_king",
+    99: "3_pawn",
+    100: "",
+    101: "",
+    102: "",
+    103: "",
+    104: "",
+    105: "",
+    106: "",
+    107: "",
+    108: "",
+    109: "",
+    110: "2_pawn",
+    111: "2_queen",
+    112: "3_bishop",
+    113: "3_pawn",
+    114: "",
+    115: "",
+    116: "",
+    117: "",
+    118: "",
+    119: "",
+    120: "",
+    121: "",
+    122: "",
+    123: "",
+    124: "2_pawn",
+    125: "2_bishop",
+    126: "3_knight",
+    127: "3_pawn",
+    128: "",
+    129: "",
+    130: "",
+    131: "",
+    132: "",
+    133: "",
+    134: "",
+    135: "",
+    136: "",
+    137: "",
+    138: "2_pawn",
+    139: "2_knight",
+    140: "3_rook",
+    141: "3_pawn",
+    142: "",
+    143: "",
+    144: "",
+    145: "",
+    146: "",
+    147: "",
+    148: "",
+    149: "",
+    150: "",
+    151: "",
+    152: "2_pawn",
+    153: "2_rook",
+    154: "",
+    155: "",
+    156: "",
+    157: "",
+    158: "",
+    159: "",
+    160: "",
+    161: "",
+    162: "",
+    163: "",
+    164: "",
+    165: "",
+    166: "",
+    167: "",
+    168: "",
+    169: "",
+    170: "",
+    171: "1_pawn",
+    172: "1_pawn",
+    173: "1_pawn",
+    174: "1_pawn",
+    175: "1_pawn",
+    176: "1_pawn",
+    177: "1_pawn",
+    178: "1_pawn",
+    179: "",
+    180: "",
+    181: "",
+    182: "",
+    183: "",
+    184: "",
+    185: "1_rook",
+    186: "1_knight",
+    187: "1_bishop",
+    188: "1_king",
+    189: "1_queen",
+    190: "1_bishop",
+    191: "1_knight",
+    192: "1_rook",
+    193: "",
+    194: "",
+    195: "",
+    
+    
 };
 
 function findBoardLocation(val) {
   numbers = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
   result1 = numbers[(val % 8)];
-  result2 = 10 - (Math.floor(val / 8));
+  result2 = 9 - (Math.floor(val / 8));
 
-  return result1 + (Number(result2));
+  return result1 + result2;
 }
 
-function getNotation(value, piece) {
+function writeSidebar(value, piece) {
     let not = "";
 
     if (piece.includes("pawn")) {
@@ -228,30 +343,7 @@ function getNotation(value, piece) {
       not = "R"
     }
     
-    return (not + findBoardLocation(value));
-}
-
-function writeSidebar(value) {
-    document.getElementById("notation").innerHTML += `<tr>${value}</tr>`;
-}
-
-function calculateOpening(not) {
-
-  if (JSON.stringify(not) == JSON.stringify(["e4"])) {
-    return "King's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["d4"])) {
-    return "Queen's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["e4", "ke2"])) {
-    return "Bongcloud Opening";
-  }
-
-
-  else {
-    return "";
-  }
-  
+    document.getElementById("notation").innerHTML += `<span style="padding: 20px; word-wrap: break-word;">${not}${value}</span>`;
 }
 
 function drawBoard() {
@@ -265,98 +357,120 @@ function drawBoard() {
     else if (style == "darkwood") {
       draw("/src/img/boards/darkwood.png", 0, 0, 512, 512);
     }
-
-    else if (style == "dash") {
-      draw("/src/img/boards/dash.png", 0, 0, 512, 512);
-    }
     
     else {
 
-    ctx.fillStyle = board_color2;
+    ctx.fillStyle = board_color1;
     ctx.fillRect(0, 0, 512, 512);
 
     // fill checkboard pattern
-    ctx.fillStyle = board_color1;
-    for (i = 0; i < 64; i++) {
+    ctx.fillStyle = board_color2;
+    for (i = 0; i < 196; i++) {
       ctx.fillRect(x * square_size, y * square_size, square_size, square_size);
       x += 2;
 
-      if (x > 8) {
-          x -= 9;
+      if (x > 14) {
+          x -= 15;
           y++;
       }
     }
 
-    writeText("8", (square_size * 0) + 2, (square_size * 0) + 14, "15px sans-serif", board_color1);
-    writeText("7", (square_size * 0) + 2, (square_size * 1) + 14, "15px sans-serif", board_color2);
-    writeText("6", (square_size * 0) + 2, (square_size * 2) + 14, "15px sans-serif", board_color1);
-    writeText("5", (square_size * 0) + 2, (square_size * 3) + 14, "15px sans-serif", board_color2);
-    writeText("4", (square_size * 0) + 2, (square_size * 4) + 14, "15px sans-serif", board_color1);
-    writeText("3", (square_size * 0) + 2, (square_size * 5) + 14, "15px sans-serif", board_color2);
-    writeText("2", (square_size * 0) + 2, (square_size * 6) + 14, "15px sans-serif", board_color1);
-    writeText("1", (square_size * 0) + 2, (square_size * 7) + 14, "15px sans-serif", board_color2);
+    function drawBigSquare(x, y) {
+      ctx.fillRect(x * square_size, y * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 1) * square_size, y * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 2) * square_size, y * square_size, square_size+1, square_size+1);
 
-    writeText("a", (square_size * 0) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
-    writeText("b", (square_size * 1) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
-    writeText("c", (square_size * 2) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
-    writeText("d", (square_size * 3) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
-    writeText("e", (square_size * 4) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
-    writeText("f", (square_size * 5) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
-    writeText("g", (square_size * 6) + 53, (square_size * 7) + 61, "15px sans-serif", board_color2);
-    writeText("h", (square_size * 7) + 53, (square_size * 7) + 61, "15px sans-serif", board_color1);
+      ctx.fillRect(x * square_size, (y + 1) * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 1) * square_size, (y + 1) * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 2) * square_size, (y + 1) * square_size, square_size+1, square_size+1);
+
+      ctx.fillRect(x * square_size, (y + 2) * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 1) * square_size, (y + 2) * square_size, square_size+1, square_size+1);
+      ctx.fillRect((x + 2) * square_size, (y + 2) * square_size, square_size+1, square_size+1);
+    }
+
+    ctx.fillStyle = "black";
+    drawBigSquare(0, 0)
+    drawBigSquare(0, 11)
+    drawBigSquare(11, 0)
+    drawBigSquare(11, 11)
 
   }
 
 }
 
 function drawPieces() {
-    for (n = 0; n < 64; n++) {
+    for (n = 0; n < 196; n++) {
       if (board_pieces[n] != "") {
+
+        if (document.getElementById("pieceSet").value == "wbrb") {
+          team_path_1 = "vanilla/white";
+          team_path_2 = "vanilla/black";
+          team_path_3 = "4p/red";
+          team_path_4 = "4p/blue";
+        }
+        else if (document.getElementById("pieceSet").value == "rgyb") {
+          team_path_1 = "4p/red";
+          team_path_2 = "4p/green";
+          team_path_3 = "4p/blue";
+          team_path_4 = "4p/yellow";
+        }
   
         // vanilla pieces
-        if (board_pieces[n] == "white_pawn") {
-          var filepath = piece_set+"/vanilla/white/pawn";
-        } else if (board_pieces[n] == "white_king") {
-          var filepath = piece_set+"/vanilla/white/king";
-        } else if (board_pieces[n] == "white_queen") {
-          var filepath = piece_set+"/vanilla/white/queen";
-        } else if (board_pieces[n] == "white_bishop") {
-          var filepath = piece_set+"/vanilla/white/bishop";
-        } else if (board_pieces[n] == "white_knight") {
-          var filepath = piece_set+"/vanilla/white/knight";
-        } else if (board_pieces[n] == "white_rook") {
-          var filepath = piece_set+"/vanilla/white/rook";
-        } else if (board_pieces[n] == "black_pawn") {
-          var filepath = piece_set+"/vanilla/black/pawn";
-        } else if (board_pieces[n] == "black_king") {
-          var filepath = piece_set+"/vanilla/black/king";
-        } else if (board_pieces[n] == "black_queen") {
-          var filepath = piece_set+"/vanilla/black/queen";
-        } else if (board_pieces[n] == "black_bishop") {
-          var filepath = piece_set+"/vanilla/black/bishop";
-        } else if (board_pieces[n] == "black_knight") {
-          var filepath = piece_set+"/vanilla/black/knight";
-        } else if (board_pieces[n] == "black_rook") {
-          var filepath = piece_set+"/vanilla/black/rook";
+        if (board_pieces[n] == "1_pawn") {
+          var filepath = "cburnett/"+team_path_1+"/pawn";
+        } else if (board_pieces[n] == "1_king") {
+          var filepath = "cburnett/"+team_path_1+"/king";
+        } else if (board_pieces[n] == "1_queen") {
+          var filepath = "cburnett/"+team_path_1+"/queen";
+        } else if (board_pieces[n] == "1_bishop") {
+          var filepath = "cburnett/"+team_path_1+"/bishop";
+        } else if (board_pieces[n] == "1_knight") {
+          var filepath = "cburnett/"+team_path_1+"/knight";
+        } else if (board_pieces[n] == "1_rook") {
+          var filepath = "cburnett/"+team_path_1+"/rook";
+        }
+         else if (board_pieces[n] == "2_pawn") {
+          var filepath = "cburnett/"+team_path_2+"/pawn";
+        } else if (board_pieces[n] == "2_king") {
+          var filepath = "cburnett/"+team_path_2+"/king";
+        } else if (board_pieces[n] == "2_queen") {
+          var filepath = "cburnett/"+team_path_2+"/queen";
+        } else if (board_pieces[n] == "2_bishop") {
+          var filepath = "cburnett/"+team_path_2+"/bishop";
+        } else if (board_pieces[n] == "2_knight") {
+          var filepath = "cburnett/"+team_path_2+"/knight";
+        } else if (board_pieces[n] == "2_rook") {
+          var filepath = "cburnett/"+team_path_2+"/rook";
         } 
-
-        // chaturanga pieces
-        else if (board_pieces[n] == "white_ferz") {
-          var filepath = "cburnett/chaturanga/white/ferz";
-        } else if (board_pieces[n] == "white_elephant") {
-          var filepath = "cburnett/chaturanga/white/elephant";
-        } else if (board_pieces[n] == "black_ferz") {
-          var filepath = "cburnett/chaturanga/black/ferz";
-        } else if (board_pieces[n] == "black_elephant") {
-          var filepath = "cburnett/chaturanga/black/elephant";
+         else if (board_pieces[n] == "3_pawn") {
+          var filepath = "cburnett/"+team_path_3+"/pawn";
+        } else if (board_pieces[n] == "3_king") {
+          var filepath = "cburnett/"+team_path_3+"/king";
+        } else if (board_pieces[n] == "3_queen") {
+          var filepath = "cburnett/"+team_path_3+"/queen";
+        } else if (board_pieces[n] == "3_bishop") {
+          var filepath = "cburnett/"+team_path_3+"/bishop";
+        } else if (board_pieces[n] == "3_knight") {
+          var filepath = "cburnett/"+team_path_3+"/knight";
+        } else if (board_pieces[n] == "3_rook") {
+          var filepath = "cburnett/"+team_path_3+"/rook";
         } 
-
-        // the powerful all mighty duck
-        else if (board_pieces[n] == "duck") {
-          var filepath = "special/duck";
+         else if (board_pieces[n] == "4_pawn") {
+          var filepath = "cburnett/"+team_path_4+"/pawn";
+        } else if (board_pieces[n] == "4_king") {
+          var filepath = "cburnett/"+team_path_4+"/king";
+        } else if (board_pieces[n] == "4_queen") {
+          var filepath = "cburnett/"+team_path_4+"/queen";
+        } else if (board_pieces[n] == "4_bishop") {
+          var filepath = "cburnett/"+team_path_4+"/bishop";
+        } else if (board_pieces[n] == "4_knight") {
+          var filepath = "cburnett/"+team_path_4+"/knight";
+        } else if (board_pieces[n] == "4_rook") {
+          var filepath = "cburnett/"+team_path_4+"/rook";
         } 
   
-        draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+        draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 14)) * square_size, (Math.floor(n / 14)) * square_size, square_size, square_size);
       }
     }
 }
@@ -365,12 +479,7 @@ function movePiece(last_position, movement, piece) {
     board_pieces[last_position] = "";
     board_pieces[Number(selected_piece_pos) - movement] = piece;
 
-    notation = getNotation(last_position, piece)
-
-    writeSidebar(notation);
-    algebraic_notation.push(notation)
-
-    document.getElementById("opening").innerHTML = calculateOpening(algebraic_notation)
+    writeSidebar(findBoardLocation(last_position), piece);
 
     playSound("move");
 }
@@ -439,15 +548,15 @@ elm.addEventListener("mousedown", function (e) {
     
     var findpiece_x = rmousex / square_size
     var findpiece_y = rmousey / square_size
-    var findpiece = findpiece_x + (findpiece_y * 8);
+    var findpiece = findpiece_x + (findpiece_y * 14);
 
-    if (board_pieces[findpiece].includes(this_team)/* && turn == "white" */) {
+    if (board_pieces[findpiece].includes(this_team)) {
 
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
 
       var tran_black = "rgb(0, 0, 0, 0.55)";
-      var radius = 11
+      var radius = 7
       var radius_plus = 25
       var line_width = 5.3
       var piece = board_pieces[findpiece];
@@ -461,14 +570,14 @@ elm.addEventListener("mousedown", function (e) {
       if (piece == `${this_team}_pawn`) {
         drawCircle(rmousex, rmousey - (square_size * 1), tran_black, radius);
 
-        if (selected_piece_pos >  47 && selected_piece_pos < 56) {
+        if (selected_piece_pos > 171 && selected_piece_pos < 178) {
           drawCircle(rmousex, rmousey - (square_size * 2), tran_black, radius);
         }
 
-        if (board_pieces[selected_piece_pos - 9].includes(opponent_team)) {
+        if (board_pieces[selected_piece_pos - 15].includes(opponent_team)) {
           drawCircleOutline(rmousex - (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
-        if (board_pieces[selected_piece_pos - 7].includes(opponent_team)) {
+        if (board_pieces[selected_piece_pos - 13].includes(opponent_team)) {
           drawCircleOutline(rmousex + (square_size * 1), rmousey - (square_size * 1), tran_black, radius_plus, line_width)
         }
       }
@@ -570,16 +679,16 @@ elm.addEventListener("mousedown", function (e) {
       if (selected_piece_id == `${this_team}_pawn`) {
 
         // motion
-        if (Number(findpiece) + 8 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
-            movePiece(selected_piece_pos, 8, selected_piece_id);
-        } else if (Number(findpiece) + 16 == Number(selected_piece_pos) && selected_piece_pos >  47 && selected_piece_pos < 56  && board_pieces[Number(findpiece)] == "") {
-            movePiece(selected_piece_pos, 16, selected_piece_id);
+        if (Number(findpiece) + 14 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 14, selected_piece_id);
+        } else if (Number(findpiece) + 28 == Number(selected_piece_pos) && selected_piece_pos >  171 && selected_piece_pos < 178  && board_pieces[Number(findpiece)] == "") {
+            movePiece(selected_piece_pos, 28, selected_piece_id);
         }
 
         // capture
-        if (Number(findpiece) + 9 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
+        if (Number(findpiece) + 15 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
-        } else if (Number(findpiece) + 7 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
+        } else if (Number(findpiece) + 13 == Number(selected_piece_pos) && board_pieces[Number(findpiece)].includes(opponent_team)) {
             capturePiece((Number(findpiece)), selected_piece_pos, selected_piece_id);
         }
 
@@ -754,24 +863,6 @@ elm.addEventListener("mousedown", function (e) {
       }
 
       if (selected_piece_id == `${this_team}_rook`) {
-
-        // left motion
-
-        /*
-        fucking failed prototype of accurate limited rook movement
-
-        if (Number(findpiece) + 1 <= Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
-            if (Number(findpiece) + 2 <= Number(selected_piece_pos) && board_pieces[Number(findpiece + 1)] == "") {
-                    if (Number(findpiece) + 3 <= Number(selected_piece_pos) && board_pieces[Number(findpiece + 2)] == "") {
-                        movePiece(selected_piece_pos, 3,  selected_piece_id);
-                    } else {
-                        movePiece(selected_piece_pos, 2,  selected_piece_id);
-                    }
-            } else {
-                movePiece(selected_piece_pos, 1,  selected_piece_id);
-            }
-        }
-        */
 
         if (Number(findpiece) + 1 == Number(selected_piece_pos) && board_pieces[Number(findpiece)] == "") {
             movePiece(selected_piece_pos, 1,  selected_piece_id);
@@ -950,8 +1041,6 @@ elm.addEventListener("mousedown", function (e) {
       selected_piece_id = "";
       selected_piece_pos = "";
 
-      turn = "black";
-
       setTimeout(function (){
         drawBoard();
         drawPieces();
@@ -965,3 +1054,17 @@ elm.addEventListener("mousedown", function (e) {
 
 document.getElementById("boardStyle").value = style;
 changeBoardStyle(style);
+
+// --------------------------------------------
+
+document.getElementById("pieceSet").length = 0;
+
+var option1 = document.createElement("option");
+option1.text = "W, B, R, B";
+option1.value = "wbrb";
+document.getElementById("pieceSet").add(option1);
+
+var option2 = document.createElement("option");
+option2.text = "R, G, Y, B";
+option2.value = "rgyb";
+document.getElementById("pieceSet").add(option2);

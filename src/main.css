@@ -10,7 +10,7 @@ body {
 
 td, th {
     border: 1px solid #ffffff;
-    width: 120px;
+    width: 160px;
     padding: 8px;
 }
 
@@ -21,4 +21,16 @@ td, th {
     text-align: center;
     overflow: scroll;
     height: 512px;
+}
+
+a {
+    color: yellow;
+}
+
+a:visited {
+    color: blueviolet;
+} 
+
+.variant-info {
+    display: inline-block;
 }

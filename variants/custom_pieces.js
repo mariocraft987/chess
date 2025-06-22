@@ -1,3 +1,106 @@
+// scripts
+  var openFile = function(file, id, set_piece) {
+  var input = file.target;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var dataURL = reader.result;
+    var output = document.getElementById(id);
+    output.src = dataURL;
+
+    if (set_piece == true) {
+        if (id == "w_pawn_img") {
+            w_pawn_img = dataURL;
+        } else if (id == "w_bishop_img") {
+            w_bishop_img = dataURL;
+        } else if (id == "w_knight_img") {
+            w_knight_img = dataURL;
+        } else if (id == "w_rook_img") {
+            w_rook_img = dataURL;
+        } else if (id == "w_queen_img") {
+            w_queen_img = dataURL;
+        } else if (id == "w_king_img") {
+            w_king_img = dataURL;
+        } else if (id == "b_pawn_img") {
+            b_pawn_img = dataURL;
+        } else if (id == "b_bishop_img") {
+            b_bishop_img = dataURL;
+        } else if (id == "b_knight_img") {
+            b_knight_img = dataURL;
+        } else if (id == "b_rook_img") {
+            b_rook_img = dataURL;
+        } else if (id == "b_queen_img") {
+            b_queen_img = dataURL;
+        } else if (id == "b_king_img") {
+            b_king_img = dataURL;
+        }
+
+        drawBoard();
+        drawPieces();
+    }
+
+  };
+  reader.readAsDataURL(input.files[0]);
+};
+
+document.getElementById("below-gui").innerHTML = `
+    <br/>
+    <h1>Change Piece Style</h1>
+    <h2>White Pieces</h2>
+    <p>White Pawn</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_pawn_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/pawn.svg" id="w_pawn_img" width="64" height="64">
+    <p>White Bishop</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_bishop_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/bishop.svg" id="w_bishop_img" width="64" height="64">
+    <p>White Knight</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_knight_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/knight.svg" id="w_knight_img" width="64" height="64">
+    <p>White Rook</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_rook_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/rook.svg" id="w_rook_img" width="64" height="64">
+    <p>White Queen</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_queen_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/queen.svg" id="w_queen_img" width="64" height="64">
+    <p>White King</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'w_king_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/white/king.svg" id="w_king_img" width="64" height="64">
+
+    <hr>
+
+    <h2>Black pieces</h2>
+    <p>Black Pawn</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_pawn_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/pawn.svg" id="b_pawn_img" width="64" height="64">
+    <p>Black Bishop</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_bishop_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/bishop.svg" id="b_bishop_img" width="64" height="64">
+    <p>Black Knight</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_knight_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/knight.svg" id="b_knight_img" width="64" height="64">
+    <p>Black Rook</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_rook_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/rook.svg" id="b_rook_img" width="64" height="64">
+    <p>Black Queen</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_queen_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/queen.svg" id="b_queen_img" width="64" height="64">
+    <p>Black King</p>
+    <input type="file" accept="image/*" onchange="openFile(event, 'b_king_img', true)">
+    <br/>
+    <img src="/src/pieces/cburnett/vanilla/black/king.svg" id="b_king_img" width="64" height="64">
+
+`
+
 // chessboard colors
 let style = "green";
 let board_color1 = "#769656"; // darker color
@@ -7,15 +110,25 @@ let board_color2 = "#eeeed2"; // lighter color
 this_team = "white";
 opponent_team = "black";
 piece_set = "cburnett";
-turn = "white";
 
-algebraic_notation = [];
+let w_pawn_img = "/src/pieces/"+piece_set+"/vanilla/white/pawn.svg";
+let w_bishop_img = "/src/pieces/"+piece_set+"/vanilla/white/bishop.svg";
+let w_knight_img = "/src/pieces/"+piece_set+"/vanilla/white/knight.svg";
+let w_rook_img = "/src/pieces/"+piece_set+"/vanilla/white/rook.svg";
+let w_queen_img = "/src/pieces/"+piece_set+"/vanilla/white/queen.svg";
+let w_king_img = "/src/pieces/"+piece_set+"/vanilla/white/king.svg";
+
+let b_pawn_img = "/src/pieces/"+piece_set+"/vanilla/black/pawn.svg";
+let b_bishop_img = "/src/pieces/"+piece_set+"/vanilla/black/bishop.svg";
+let b_knight_img = "/src/pieces/"+piece_set+"/vanilla/black/knight.svg";
+let b_rook_img = "/src/pieces/"+piece_set+"/vanilla/black/rook.svg";
+let b_queen_img = "/src/pieces/"+piece_set+"/vanilla/black/queen.svg";
+let b_king_img = "/src/pieces/"+piece_set+"/vanilla/black/king.svg";
 
 // math stuff
 let square_size = 64;
 let selected_piece_id = "";
 let selected_piece_pos = "";
-let castle = true;
 
 // sfx variables
 let move_sfx = new Audio("/src/sfx/move-self.mp3");
@@ -84,6 +197,11 @@ function changeBoardStyle(id) {
     board_color2 = "#eeeed2";
   }
 
+  if (style == "blue") {
+    board_color1 = "#4b7399";
+    board_color2 = "#eae9d2";
+  }
+
   if (style == "purple") {
     board_color1 = "#8476ba";
     board_color2 = "#f0f1f0";
@@ -102,31 +220,6 @@ function changeBoardStyle(id) {
   if (style == "tournament") {
     board_color1 = "#316548";
     board_color2 = "#eaeae7";
-  }
-
-  if (style == "blue") {
-    board_color1 = "#4b7399";
-    board_color2 = "#eae9d2";
-  }
-
-  if (style == "bubblegum") {
-    board_color1 = "#fcd8dd";
-    board_color2 = "#ffffff";
-  }
-
-  if (style == "martin") {
-    board_color1 = "#68a27c";
-    board_color2 = "#f1f0f0";
-  }
-
-  if (style == "checkers") {
-    board_color1 = "#303030";
-    board_color2 = "#c74c51";
-  }
-
-  if (style == "orange") {
-    board_color1 = "#d18815";
-    board_color2 = "#fae4ae";
   }
 
   drawBoard();
@@ -206,12 +299,12 @@ function findBoardLocation(val) {
   numbers = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
   result1 = numbers[(val % 8)];
-  result2 = 10 - (Math.floor(val / 8));
+  result2 = 9 - (Math.floor(val / 8));
 
-  return result1 + (Number(result2));
+  return result1 + result2;
 }
 
-function getNotation(value, piece) {
+function writeSidebar(value, piece) {
     let not = "";
 
     if (piece.includes("pawn")) {
@@ -228,30 +321,7 @@ function getNotation(value, piece) {
       not = "R"
     }
     
-    return (not + findBoardLocation(value));
-}
-
-function writeSidebar(value) {
-    document.getElementById("notation").innerHTML += `<tr>${value}</tr>`;
-}
-
-function calculateOpening(not) {
-
-  if (JSON.stringify(not) == JSON.stringify(["e4"])) {
-    return "King's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["d4"])) {
-    return "Queen's Pawn Opening";
-  }
-  else if (JSON.stringify(not) == JSON.stringify(["e4", "ke2"])) {
-    return "Bongcloud Opening";
-  }
-
-
-  else {
-    return "";
-  }
-  
+    document.getElementById("notation").innerHTML += `<span style="padding: 20px; word-wrap: break-word;">${not}${value}</span>`;
 }
 
 function drawBoard() {
@@ -315,48 +385,32 @@ function drawPieces() {
   
         // vanilla pieces
         if (board_pieces[n] == "white_pawn") {
-          var filepath = piece_set+"/vanilla/white/pawn";
+          var filepath = w_pawn_img;
         } else if (board_pieces[n] == "white_king") {
-          var filepath = piece_set+"/vanilla/white/king";
+          var filepath = w_king_img;
         } else if (board_pieces[n] == "white_queen") {
-          var filepath = piece_set+"/vanilla/white/queen";
+          var filepath = w_queen_img;
         } else if (board_pieces[n] == "white_bishop") {
-          var filepath = piece_set+"/vanilla/white/bishop";
+          var filepath = w_bishop_img;
         } else if (board_pieces[n] == "white_knight") {
-          var filepath = piece_set+"/vanilla/white/knight";
+          var filepath = w_knight_img;
         } else if (board_pieces[n] == "white_rook") {
-          var filepath = piece_set+"/vanilla/white/rook";
+          var filepath = w_rook_img;
         } else if (board_pieces[n] == "black_pawn") {
-          var filepath = piece_set+"/vanilla/black/pawn";
+          var filepath = b_pawn_img;
         } else if (board_pieces[n] == "black_king") {
-          var filepath = piece_set+"/vanilla/black/king";
+          var filepath = b_king_img;
         } else if (board_pieces[n] == "black_queen") {
-          var filepath = piece_set+"/vanilla/black/queen";
+          var filepath = b_queen_img;
         } else if (board_pieces[n] == "black_bishop") {
-          var filepath = piece_set+"/vanilla/black/bishop";
+          var filepath = b_bishop_img;
         } else if (board_pieces[n] == "black_knight") {
-          var filepath = piece_set+"/vanilla/black/knight";
+          var filepath = b_knight_img;
         } else if (board_pieces[n] == "black_rook") {
-          var filepath = piece_set+"/vanilla/black/rook";
-        } 
-
-        // chaturanga pieces
-        else if (board_pieces[n] == "white_ferz") {
-          var filepath = "cburnett/chaturanga/white/ferz";
-        } else if (board_pieces[n] == "white_elephant") {
-          var filepath = "cburnett/chaturanga/white/elephant";
-        } else if (board_pieces[n] == "black_ferz") {
-          var filepath = "cburnett/chaturanga/black/ferz";
-        } else if (board_pieces[n] == "black_elephant") {
-          var filepath = "cburnett/chaturanga/black/elephant";
-        } 
-
-        // the powerful all mighty duck
-        else if (board_pieces[n] == "duck") {
-          var filepath = "special/duck";
+          var filepath = b_rook_img;
         } 
   
-        draw(`/src/pieces/${filepath}.svg`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
+        draw(`${filepath}`, (Math.floor(n % 8)) * square_size, (Math.floor(n / 8)) * square_size, square_size, square_size);
       }
     }
 }
@@ -365,12 +419,7 @@ function movePiece(last_position, movement, piece) {
     board_pieces[last_position] = "";
     board_pieces[Number(selected_piece_pos) - movement] = piece;
 
-    notation = getNotation(last_position, piece)
-
-    writeSidebar(notation);
-    algebraic_notation.push(notation)
-
-    document.getElementById("opening").innerHTML = calculateOpening(algebraic_notation)
+    writeSidebar(findBoardLocation(last_position), piece);
 
     playSound("move");
 }
@@ -441,7 +490,7 @@ elm.addEventListener("mousedown", function (e) {
     var findpiece_y = rmousey / square_size
     var findpiece = findpiece_x + (findpiece_y * 8);
 
-    if (board_pieces[findpiece].includes(this_team)/* && turn == "white" */) {
+    if (board_pieces[findpiece].includes(this_team)) {
 
       ctx.fillStyle = "#F7F57D";
       ctx.fillRect(roundToSquareSize(square_size, getMousePos(elm, e).x), roundToSquareSize(square_size, getMousePos(elm, e).y), square_size, square_size);
@@ -949,8 +998,6 @@ elm.addEventListener("mousedown", function (e) {
 
       selected_piece_id = "";
       selected_piece_pos = "";
-
-      turn = "black";
 
       setTimeout(function (){
         drawBoard();
